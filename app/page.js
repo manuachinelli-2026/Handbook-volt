@@ -587,6 +587,61 @@ function AiIntegrationSection() {
   )
 }
 
+// ─── Broadcast Section ────────────────────────────────────────────────────────
+
+function BroadcastSection() {
+  const { lang } = useLanguage()
+  const s = ui.broadcast
+
+  const shots = [
+    { src: '/screenshots/broadcast-menu.png',    alt: 'Acceder a Broadcast' },
+    { src: '/screenshots/broadcast-type.png',    alt: 'Elegir lista o grupo' },
+    { src: '/screenshots/broadcast-compose.png', alt: 'Redactar y enviar' },
+  ]
+
+  return (
+    <section className="border-t border-gray-100 bg-white py-24 sm:py-32">
+      <Container>
+        <div className="grid grid-cols-1 items-start gap-16 lg:grid-cols-2">
+
+          {/* Screenshots — left, stacked */}
+          <SlideIn from="left">
+            <div className="space-y-4">
+              {shots.map((s, i) => (
+                <motion.img
+                  key={s.src}
+                  src={s.src}
+                  alt={s.alt}
+                  className="w-full rounded-2xl shadow-sm ring-1 ring-black/5"
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1], delay: i * 0.12 }}
+                  viewport={{ once: true, margin: '-8%' }}
+                />
+              ))}
+            </div>
+          </SlideIn>
+
+          {/* Text — right */}
+          <SlideIn from="right" delay={0.1} className="lg:sticky lg:top-28">
+            <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green">
+              {t(s.eyebrow, lang)}
+            </p>
+            <h2 className="mt-3 text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">
+              {t(s.title, lang)}
+            </h2>
+            <p className="mt-5 font-inter text-base/7 text-gray-500">
+              {t(s.description, lang)}
+            </p>
+            <TipCallout>{t(s.tip, lang)}</TipCallout>
+          </SlideIn>
+
+        </div>
+      </Container>
+    </section>
+  )
+}
+
 // ─── Lists Section ────────────────────────────────────────────────────────────
 
 function ListsSection() {
@@ -708,6 +763,7 @@ export default function Home() {
         <AiIntegrationSection />
         <PrivacyModeSection />
         <ShortcutsSection />
+        <BroadcastSection />
         <ListsSection />
         <NewChatSection />
       </main>

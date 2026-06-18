@@ -269,6 +269,18 @@ export const ui = {
       en: 'Activate it from the App Store inside Volt.',
     },
   },
+  broadcast: {
+    eyebrow: { es: 'Broadcast', en: 'Broadcast' },
+    title: { es: 'Comunicá a todos al mismo tiempo.', en: 'Message everyone at once.' },
+    description: {
+      es: 'Desde el menú "···" en la barra lateral, entrá a Broadcast. Elegí si querés enviar a una lista o a los miembros de un grupo, redactá el mensaje dividiéndolo en partes para que suene más natural, agregá imágenes o documentos, y envialo a todos con un solo clic.',
+      en: 'From the "···" menu in the sidebar, go to Broadcast. Choose whether to send to a list or group members, write the message split into parts to sound more natural, add images or documents, and send it to everyone in one click.',
+    },
+    tip: {
+      es: 'Cada destinatario recibe el mensaje como si fuera individual, no como un grupo.',
+      en: 'Each recipient gets the message as if it were sent individually, not as a group.',
+    },
+  },
   lists: {
     eyebrow: { es: 'Listas', en: 'Lists' },
     title: { es: 'Organizá tus chats a tu manera.', en: 'Organize your chats your way.' },
