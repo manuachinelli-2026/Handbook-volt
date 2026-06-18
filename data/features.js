@@ -154,13 +154,23 @@ export const ui = {
   tasks: {
     eyebrow: { es: 'Tareas & Recordatorios', en: 'Tasks & Reminders' },
     title: { es: 'Nada se escapa.', en: 'Nothing slips through.' },
-    description: {
-      es: 'Pasá el cursor sobre cualquier mensaje, hacé clic en el cuadradito y Volt genera una tarea automáticamente con IA. Podés programarla, reorganizarla y darle check cuando la terminés.',
-      en: 'Hover over any message, click the checkbox, and Volt automatically generates a task with AI. Schedule it, reorganize it, and check it off when done.',
-    },
+    steps: [
+      {
+        es: 'Pasá el cursor sobre un mensaje — aparece un checkbox en la esquina.',
+        en: 'Hover over a message — a checkbox appears in the corner.',
+      },
+      {
+        es: 'Hacé clic y Volt redacta la tarea automáticamente con IA.',
+        en: 'Click it and Volt automatically drafts the task with AI.',
+      },
+      {
+        es: 'Confirmá la fecha, asignala y guardá. Listo.',
+        en: 'Confirm the date, assign it, and save. Done.',
+      },
+    ],
     tip: {
-      es: 'Podés asignar tareas a un compañero de equipo y también ver qué tareas tienen asignadas cada uno. Todo desde Volt.',
-      en: 'You can assign tasks to a teammate and see what tasks everyone on your team has assigned. All from Volt.',
+      es: 'Podés asignar tareas a cualquier integrante del equipo y ver en un solo lugar qué tiene pendiente cada uno.',
+      en: 'You can assign tasks to any team member and see everyone\'s pending items in one place.',
     },
   },
   sendLater: {

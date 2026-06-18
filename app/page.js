@@ -157,42 +157,66 @@ function GettingStarted() {
 
 function TasksMockup() {
   return (
-    <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-black/5">
-      {/* WhatsApp message bubble */}
-      <div className="flex gap-3">
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gray-200 font-inter text-sm font-semibold text-gray-600">
-          M
-        </div>
-        <div className="flex-1">
-          <p className="mb-1 font-inter text-xs font-medium text-gray-500">Marco García</p>
-          <div className="rounded-2xl rounded-tl-sm bg-gray-100 px-4 py-3">
-            <p className="font-inter text-sm/6 text-gray-800">
-              Hey! Call with Juan confirmed for tomorrow 9am. He'll want the budget overview ready. Don't forget!
-            </p>
-            <p className="mt-1 text-right font-inter text-xs text-gray-400">9:14 AM ✓✓</p>
+    <div className="space-y-3">
+
+      {/* Step 1 — message with checkbox visible on hover */}
+      <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5">
+        <p className="mb-2 font-inter text-xs font-medium uppercase tracking-widest text-gray-400">1 — Hover sobre el mensaje</p>
+        <div className="relative rounded-xl bg-[#ece5dd] px-4 py-3">
+          {/* Chat background pattern — subtle diagonal dots */}
+          <p className="font-inter text-sm/5 text-gray-800 pr-6">
+            Hola flor, solo acuérdate que hoy ponen los telefonillos en casa si te las 11:00 !
+          </p>
+          <p className="mt-1 text-right font-inter text-xs text-gray-500">09:43</p>
+          {/* Checkbox in corner */}
+          <div className="absolute right-3 top-3 flex h-5 w-5 items-center justify-center rounded border-2 border-gray-400 bg-white">
+            <div className="h-2.5 w-2.5 rounded-sm bg-gray-300" />
           </div>
         </div>
       </div>
 
-      {/* Volt task badge */}
-      <div className="mt-4 flex justify-center">
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-volt-green-neon/20 px-3 py-1 font-inter text-xs font-medium text-volt-green">
-          ⚡ Task created by Volt
-        </span>
+      {/* Step 2 — Drafting task... */}
+      <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5">
+        <p className="mb-2 font-inter text-xs font-medium uppercase tracking-widest text-gray-400">2 — Volt genera la tarea con IA</p>
+        <div className="flex items-center justify-center rounded-xl bg-gray-50 py-4">
+          <span className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 shadow-sm ring-1 ring-black/5">
+            <span className="text-base">⚡</span>
+            <span className="font-inter text-sm font-medium text-gray-700">Drafting task</span>
+            <span className="flex gap-0.5">
+              {[0, 1, 2].map(i => (
+                <span key={i} className="inline-block h-1 w-1 rounded-full bg-gray-400" />
+              ))}
+            </span>
+          </span>
+        </div>
       </div>
 
-      {/* Task card */}
-      <div className="mt-3 flex items-center gap-3 rounded-xl bg-white px-4 py-3 shadow-xs ring-1 ring-black/5">
-        <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-volt-green">
-          <svg className="h-3.5 w-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        </div>
-        <div className="flex flex-1 items-center justify-between">
-          <span className="font-inter text-sm font-medium text-gray-900">Meet Juan 9am</span>
-          <span className="font-inter text-xs text-gray-400">Tomorrow</span>
+      {/* Step 3 — Task modal */}
+      <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5">
+        <p className="mb-3 font-inter text-xs font-medium uppercase tracking-widest text-gray-400">3 — Confirmá y guardá</p>
+        <div className="rounded-xl bg-white p-4 ring-1 ring-black/5 shadow-sm">
+          <p className="font-inter text-sm font-semibold text-gray-950">What's the task?</p>
+          <div className="mt-3 rounded-lg bg-gray-50 px-3 py-2.5 ring-1 ring-black/5">
+            <p className="font-inter text-sm text-gray-700">Recordar que hoy ponen los telefonillos a las 11:00</p>
+          </div>
+          <div className="mt-3 flex items-center gap-2">
+            <div className="flex items-center gap-1.5 rounded-lg bg-gray-100 px-2.5 py-1.5">
+              <div className="h-4 w-4 rounded-full bg-gray-300" />
+              <span className="font-inter text-xs text-gray-600">Me</span>
+            </div>
+            <div className="flex items-center gap-1.5 rounded-lg bg-gray-100 px-2.5 py-1.5">
+              <svg className="h-3.5 w-3.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span className="font-inter text-xs text-gray-500">Later today · 6:00 PM</span>
+            </div>
+            <div className="ml-auto flex items-center justify-center rounded-full bg-[#25D366] px-3 py-1.5">
+              <span className="font-inter text-xs font-semibold text-white">Save</span>
+            </div>
+          </div>
         </div>
       </div>
+
     </div>
   )
 }
@@ -204,25 +228,34 @@ function TasksSection() {
   return (
     <section className="bg-gray-50 py-24 sm:py-32">
       <Container>
-        <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+        <div className="grid grid-cols-1 items-start gap-16 lg:grid-cols-2">
+
           {/* Text — left */}
-          <SlideIn from="left">
+          <SlideIn from="left" className="lg:sticky lg:top-28">
             <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green">
               {t(s.eyebrow, lang)}
             </p>
             <h2 className="mt-3 text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">
               {t(s.title, lang)}
             </h2>
-            <p className="mt-5 font-inter text-base/7 text-gray-500">
-              {t(s.description, lang)}
-            </p>
-            <TipCallout>{t(s.tip, lang)}</TipCallout>
+            <ol className="mt-6 space-y-3">
+              {s.steps.map((step, i) => (
+                <li key={i} className="flex gap-3">
+                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gray-200 font-inter text-xs font-semibold text-gray-600">
+                    {i + 1}
+                  </span>
+                  <span className="font-inter text-base/7 text-gray-600">{t(step, lang)}</span>
+                </li>
+              ))}
+            </ol>
+            <TipCallout className="mt-8">{t(s.tip, lang)}</TipCallout>
           </SlideIn>
 
-          {/* Mockup — right */}
-          <SlideIn from="right" delay={0.1}>
+          {/* Mockup — right, stagger in */}
+          <SlideIn from="right" delay={0.15}>
             <TasksMockup />
           </SlideIn>
+
         </div>
       </Container>
     </section>
