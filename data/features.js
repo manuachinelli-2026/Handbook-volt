@@ -201,6 +201,18 @@ export const ui = {
       en: 'To access it, click your name in the bottom-left corner and select "App Store".',
     },
   },
+  privacyMode: {
+    eyebrow: { es: 'Modo privado', en: 'Privacy mode' },
+    title: { es: 'Compartí pantalla sin exponer tus chats.', en: 'Share your screen without exposing your chats.' },
+    description: {
+      es: 'Al activar el Modo Privado, Volt blurrea todas tus conversaciones excepto aquella sobre la que tenés el mouse. Ideal para reuniones donde compartís pantalla y no querés que se vean el resto de tus chats.',
+      en: 'When Privacy Mode is on, Volt blurs all your conversations except the one you\'re hovering over. Perfect for meetings where you share your screen and don\'t want others seeing the rest of your chats.',
+    },
+    tip: {
+      es: 'Activalo con ⌘D en Mac o Ctrl+D en Windows. Se desactiva con el mismo atajo.',
+      en: 'Toggle it with ⌘D on Mac or Ctrl+D on Windows. Same shortcut to turn it off.',
+    },
+  },
   shortcuts: {
     eyebrow: { es: 'Atajos de teclado', en: 'Keyboard shortcuts' },
     title: { es: 'Más de 50 shortcuts para ir más rápido.', en: 'More than 50 shortcuts to move faster.' },

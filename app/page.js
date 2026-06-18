@@ -381,6 +381,52 @@ function AppStoreSection() {
   )
 }
 
+// ─── Privacy Mode Section ─────────────────────────────────────────────────────
+
+function PrivacyModeSection() {
+  const { lang } = useLanguage()
+  const s = ui.privacyMode
+
+  return (
+    <section className="border-t border-gray-100 bg-white py-24 sm:py-32">
+      <Container>
+
+        {/* Text — centered above */}
+        <div className="mx-auto max-w-2xl text-center">
+          <FadeUp>
+            <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green">
+              {t(s.eyebrow, lang)}
+            </p>
+            <h2 className="mt-3 text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">
+              {t(s.title, lang)}
+            </h2>
+            <p className="mt-5 font-inter text-base/7 text-gray-500">
+              {t(s.description, lang)}
+            </p>
+            <div className="mt-6 inline-flex items-center gap-3">
+              <kbd className="inline-flex items-center rounded-md border border-gray-200 bg-white px-2.5 py-1 font-mono text-sm text-gray-700 shadow-xs">⌘D</kbd>
+              <span className="font-inter text-sm text-gray-400">/</span>
+              <kbd className="inline-flex items-center rounded-md border border-gray-200 bg-white px-2.5 py-1 font-mono text-sm text-gray-700 shadow-xs">Ctrl+D</kbd>
+            </div>
+          </FadeUp>
+        </div>
+
+        {/* Screenshot — full width below */}
+        <FadeUp delay={0.15}>
+          <div className="mt-12 overflow-hidden rounded-2xl shadow-lg ring-1 ring-black/5">
+            <img
+              src="/screenshots/privacy-mode.png"
+              alt="Privacy mode — chats blurred"
+              className="w-full"
+            />
+          </div>
+        </FadeUp>
+
+      </Container>
+    </section>
+  )
+}
+
 // ─── Shortcuts Section ────────────────────────────────────────────────────────
 
 function ShortcutsSection() {
@@ -529,6 +575,7 @@ export default function Home() {
         <TasksSection />
         <SendLaterSection />
         <AppStoreSection />
+        <PrivacyModeSection />
         <ShortcutsSection />
         <NewChatSection />
       </main>
