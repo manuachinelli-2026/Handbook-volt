@@ -19,20 +19,11 @@ function Hero() {
     <section className="relative flex min-h-screen flex-col items-center justify-center bg-white">
       <div className="w-full px-6 pb-24 pt-32 text-center">
 
-        {/* Volt badge — black square + green bolt */}
+        {/* Volt bolt — standalone, black */}
         <FadeIn>
-          <div className="mx-auto mb-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#1a1a1a]">
-            <svg
-              viewBox="0 0 24 24"
-              className="h-8 w-8"
-              fill="none"
-            >
-              <path
-                d="M13 2L3 14h8l-1 8 11-12h-8l1-8z"
-                fill="#58b836"
-              />
-            </svg>
-          </div>
+          <svg viewBox="0 0 24 24" className="mx-auto mb-8 h-12 w-12" fill="none">
+            <path d="M13 2L3 14h8l-1 8 11-12h-8l1-8z" fill="#1a1a1a" />
+          </svg>
         </FadeIn>
 
         <FadeUp delay={0.1}>
@@ -41,9 +32,9 @@ function Hero() {
           </h1>
         </FadeUp>
 
-        {/* Scroll invitation */}
+        {/* Scroll invitation — extra breathing room below heading */}
         <FadeUp delay={0.3}>
-          <div className="mt-16 flex flex-col items-center gap-3">
+          <div className="mt-28 flex flex-col items-center gap-3">
             <span className="font-inter text-sm font-normal text-gray-400">
               {t(h.cta, lang)}
             </span>
