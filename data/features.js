@@ -153,19 +153,23 @@ export const ui = {
   },
   tasks: {
     eyebrow: { es: 'Tareas & Recordatorios', en: 'Tasks & Reminders' },
-    title: { es: 'Nada se escapa.', en: 'Nothing slips through.' },
+    title: { es: 'Programá tus tareas.', en: 'Schedule your tasks.' },
+    subtitle: {
+      es: 'Programá las tareas que surgen desde los chats y gestionálas desde Volt.',
+      en: 'Schedule tasks that come up in your chats and manage them from Volt.',
+    },
     steps: [
       {
-        es: 'Pasá el cursor sobre un mensaje — aparece un checkbox en la esquina.',
-        en: 'Hover over a message — a checkbox appears in the corner.',
+        es: 'Pasá el cursor sobre el mensaje: aparece un checkbox en la esquina. Hacé clic y Volt redacta la tarea.',
+        en: 'Hover over the message: a checkbox appears in the corner. Click it and Volt drafts the task.',
       },
       {
-        es: 'Hacé clic y Volt redacta la tarea automáticamente con IA.',
-        en: 'Click it and Volt automatically drafts the task with AI.',
+        es: 'Confirmá la fecha, asignala y guardá.',
+        en: 'Confirm the date, assign it, and save.',
       },
       {
-        es: 'Confirmá la fecha, asignala y guardá. Listo.',
-        en: 'Confirm the date, assign it, and save. Done.',
+        es: 'Dirigite a Tareas, debajo de Inbox, y desde ahí gestionás todas tus tareas.',
+        en: 'Go to Tasks, below Inbox, and manage all your tasks from there.',
       },
     ],
     tip: {
