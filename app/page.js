@@ -457,56 +457,34 @@ function BroadcastSection() {
             <TipCallout>{t(s.tip, lang)}</TipCallout>
           </SlideIn>
 
-          {/* Right: 3 numbered steps */}
+          {/* Right: 3 steps side by side */}
           <SlideIn from="right" delay={0.15}>
-            <div className="space-y-5">
-              {/* Step 1 — open Broadcast */}
-              <div>
-                <p className="mb-2 font-inter text-xs font-semibold uppercase tracking-widest text-gray-400">
-                  {lang === 'es' ? 'Paso 1 — Abrí Broadcast' : 'Step 1 — Open Broadcast'}
-                </p>
-                <motion.img
-                  src="/screenshots/broadcast-menu.png"
-                  alt="Acceder a Broadcast"
-                  className="w-full rounded-2xl shadow-sm ring-1 ring-black/5"
-                  initial={{ opacity: 0, y: 24 }}
+            <div className="grid grid-cols-3 gap-3">
+              {[
+                { src: '/screenshots/broadcast-menu.png',    label: { es: 'Abrí Broadcast', en: 'Open Broadcast' } },
+                { src: '/screenshots/broadcast-type.png',    label: { es: 'Elegí a quién', en: 'Choose who' } },
+                { src: '/screenshots/broadcast-compose.png', label: { es: 'Redactá y enviá', en: 'Write and send' } },
+              ].map((step, i) => (
+                <motion.div
+                  key={step.src}
+                  className="flex flex-col gap-2"
+                  initial={{ opacity: 0, y: 28 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease }}
+                  transition={{ duration: 0.6, ease, delay: i * 0.12 }}
                   viewport={vp}
-                />
-              </div>
-              {/* Step 2 — choose type */}
-              <div>
-                <p className="mb-2 font-inter text-xs font-semibold uppercase tracking-widest text-gray-400">
-                  {lang === 'es' ? 'Paso 2 — Elegí a quién enviar' : 'Step 2 — Choose who to send to'}
-                </p>
-                <motion.img
-                  src="/screenshots/broadcast-type.png"
-                  alt="Elegir tipo de broadcast"
-                  className="w-full rounded-2xl shadow-sm ring-1 ring-black/5"
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease, delay: 0.12 }}
-                  viewport={vp}
-                />
-              </div>
-              {/* Step 3 — compose, capped height so it doesn't overflow */}
-              <div>
-                <p className="mb-2 font-inter text-xs font-semibold uppercase tracking-widest text-gray-400">
-                  {lang === 'es' ? 'Paso 3 — Redactá y enviá' : 'Step 3 — Write and send'}
-                </p>
-                <div className="max-h-80 overflow-hidden rounded-2xl shadow-sm ring-1 ring-black/5">
-                  <motion.img
-                    src="/screenshots/broadcast-compose.png"
-                    alt="Redactar y enviar"
-                    className="w-full object-top"
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, ease, delay: 0.24 }}
-                    viewport={vp}
-                  />
-                </div>
-              </div>
+                >
+                  <span className="font-inter text-xs font-semibold text-gray-400">
+                    {i + 1}. {t(step.label, lang)}
+                  </span>
+                  <div className="h-72 overflow-hidden rounded-xl shadow-sm ring-1 ring-black/5">
+                    <img
+                      src={step.src}
+                      alt={t(step.label, lang)}
+                      className="h-full w-full object-cover object-top"
+                    />
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </SlideIn>
         </div>
