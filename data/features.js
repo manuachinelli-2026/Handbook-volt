@@ -189,4 +189,16 @@ export const ui = {
       en: 'After writing your message, press ⌘S on Mac or Ctrl+S on Windows to schedule it without touching the mouse.',
     },
   },
+  newChat: {
+    eyebrow: { es: 'Nuevo chat', en: 'New chat' },
+    title: { es: 'Escribile a cualquier número.', en: 'Message any number.' },
+    description: {
+      es: 'Al crear un chat nuevo en Volt, podés ingresar el número de teléfono directamente, sin necesidad de tener el contacto agendado. Desde ahí podés enviarle el mensaje al instante o programarlo para que se envíe más tarde.',
+      en: 'When starting a new chat in Volt, you can enter a phone number directly — no need to have the contact saved. From there you can send the message instantly or schedule it for later.',
+    },
+    tip: {
+      es: 'Al agregar un contacto nuevo, podés elegir si guardarlo solo en Volt o también en tu celular.',
+      en: 'When adding a new contact, you can choose to save it in Volt only or also on your phone.',
+    },
+  },
 }
