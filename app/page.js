@@ -155,33 +155,66 @@ function GettingStarted() {
 
 // ─── Tasks Section ────────────────────────────────────────────────────────────
 
-const taskScreenshots = [
-  { src: '/screenshots/task-hover.png',    label: { es: 'Hover sobre el mensaje', en: 'Hover over the message' } },
-  { src: '/screenshots/task-drafting.png', label: { es: 'Volt redacta la tarea con IA', en: 'Volt drafts the task with AI' } },
-  { src: '/screenshots/task-modal.png',    label: { es: 'Confirmá, asignala y guardá', en: 'Confirm, assign, and save' } },
-]
-
-function TasksMockup({ lang }) {
+function TasksMockup() {
   return (
-    <div className="space-y-4">
-      {taskScreenshots.map((s, i) => (
-        <motion.div
-          key={s.src}
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, ease: [0.25, 0.1, 0.25, 1], delay: i * 0.12 }}
-          viewport={{ once: true, margin: '-8%' }}
-        >
-          <p className="mb-2 font-inter text-xs font-medium uppercase tracking-widest text-gray-400">
-            {i + 1} — {s.label[lang] ?? s.label.es}
+    <div className="space-y-3">
+
+      {/* Step 1 — message with checkbox */}
+      <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5">
+        <p className="mb-2 font-inter text-xs font-medium uppercase tracking-widest text-gray-400">1 — Hover sobre el mensaje</p>
+        <div className="relative rounded-xl bg-[#ece5dd] px-4 py-3">
+          <p className="font-inter text-sm/5 text-gray-800 pr-6">
+            Hola flor, solo acuérdate que hoy ponen los telefonillos en casa si te las 11:00 !
           </p>
-          <img
-            src={s.src}
-            alt={s.label[lang] ?? s.label.es}
-            className="w-full rounded-2xl shadow-sm ring-1 ring-black/5"
-          />
-        </motion.div>
-      ))}
+          <p className="mt-1 text-right font-inter text-xs text-gray-500">09:43</p>
+          <div className="absolute right-3 top-3 flex h-5 w-5 items-center justify-center rounded border-2 border-gray-400 bg-white">
+            <div className="h-2.5 w-2.5 rounded-sm bg-gray-300" />
+          </div>
+        </div>
+      </div>
+
+      {/* Step 2 — Drafting task */}
+      <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5">
+        <p className="mb-2 font-inter text-xs font-medium uppercase tracking-widest text-gray-400">2 — Volt genera la tarea con IA</p>
+        <div className="flex items-center justify-center rounded-xl bg-gray-50 py-4">
+          <span className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 shadow-sm ring-1 ring-black/5">
+            <span className="text-base">⚡</span>
+            <span className="font-inter text-sm font-medium text-gray-700">Drafting task</span>
+            <span className="flex gap-0.5">
+              {[0, 1, 2].map(i => (
+                <span key={i} className="inline-block h-1 w-1 rounded-full bg-gray-400" />
+              ))}
+            </span>
+          </span>
+        </div>
+      </div>
+
+      {/* Step 3 — Task modal */}
+      <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5">
+        <p className="mb-3 font-inter text-xs font-medium uppercase tracking-widest text-gray-400">3 — Confirmá y guardá</p>
+        <div className="rounded-xl bg-white p-4 ring-1 ring-black/5 shadow-sm">
+          <p className="font-inter text-sm font-semibold text-gray-950">What's the task?</p>
+          <div className="mt-3 rounded-lg bg-gray-50 px-3 py-2.5 ring-1 ring-black/5">
+            <p className="font-inter text-sm text-gray-700">Recordar que hoy ponen los telefonillos a las 11:00</p>
+          </div>
+          <div className="mt-3 flex items-center gap-2">
+            <div className="flex items-center gap-1.5 rounded-lg bg-gray-100 px-2.5 py-1.5">
+              <div className="h-4 w-4 rounded-full bg-gray-300" />
+              <span className="font-inter text-xs text-gray-600">Me</span>
+            </div>
+            <div className="flex items-center gap-1.5 rounded-lg bg-gray-100 px-2.5 py-1.5">
+              <svg className="h-3.5 w-3.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span className="font-inter text-xs text-gray-500">Later today · 6:00 PM</span>
+            </div>
+            <div className="ml-auto flex items-center justify-center rounded-full bg-[#25D366] px-3 py-1.5">
+              <span className="font-inter text-xs font-semibold text-white">Save</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   )
 }
@@ -218,7 +251,7 @@ function TasksSection() {
 
           {/* Mockup — right, stagger in */}
           <SlideIn from="right" delay={0.15}>
-            <TasksMockup lang={lang} />
+            <TasksMockup />
           </SlideIn>
 
         </div>

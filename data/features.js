@@ -153,7 +153,7 @@ export const ui = {
   },
   tasks: {
     eyebrow: { es: 'Tareas & Recordatorios', en: 'Tasks & Reminders' },
-    title: { es: 'Programá tus tareas.', en: 'Schedule your tasks.' },
+    title: { es: 'Programá y gestioná tus tareas desde Volt.', en: 'Schedule and manage your tasks from Volt.' },
     subtitle: {
       es: 'Programá las tareas que surgen desde los chats y gestionálas desde Volt.',
       en: 'Schedule tasks that come up in your chats and manage them from Volt.',
