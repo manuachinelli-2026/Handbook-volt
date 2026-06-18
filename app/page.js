@@ -6,6 +6,7 @@ import { Container } from '@/components/container'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { YoutubeEmbed } from '@/components/video'
+import { LogoMarquee } from '@/components/logo-marquee'
 import { FadeUp, FadeIn, SlideIn, ScaleIn, Stagger, StaggerItem } from '@/components/animate'
 import { features, ui } from '@/data/features'
 
@@ -16,9 +17,8 @@ function Hero() {
   const h = ui.hero
 
   return (
-    <section className="relative flex min-h-screen flex-col bg-white">
-      {/* The fixed navbar takes up ~52px — this padding compensates */}
-      <div className="flex flex-1 flex-col items-center justify-center px-6 pb-24 pt-32 text-center">
+    <section className="relative flex min-h-screen flex-col items-center justify-center bg-white">
+      <div className="w-full px-6 pb-24 pt-32 text-center">
 
         <FadeUp>
           <h1 className="mx-auto max-w-3xl text-5xl font-normal tracking-tighter text-gray-950 sm:text-6xl lg:text-7xl">
@@ -26,13 +26,22 @@ function Hero() {
           </h1>
         </FadeUp>
 
+        {/* Integration logos marquee */}
+        <FadeIn delay={0.2}>
+          <div className="mx-auto mt-14 max-w-3xl">
+            <p className="mb-5 font-inter text-xs/5 font-normal uppercase tracking-widest text-gray-400">
+              {lang === 'es' ? 'Integraciones' : 'Integrations'}
+            </p>
+            <LogoMarquee />
+          </div>
+        </FadeIn>
+
         {/* Scroll invitation */}
-        <FadeUp delay={0.3}>
-          <div className="mt-20 flex flex-col items-center gap-3">
+        <FadeUp delay={0.4}>
+          <div className="mt-16 flex flex-col items-center gap-3">
             <span className="font-inter text-sm font-normal text-gray-400">
               {t(h.cta, lang)}
             </span>
-            {/* Bouncing arrow */}
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
