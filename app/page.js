@@ -473,59 +473,11 @@ function ShortcutsSection() {
 
 function NewChatMockup() {
   return (
-    <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-black/5">
-
-      {/* Header */}
-      <div className="mb-4 flex items-center justify-between">
-        <p className="font-inter text-sm font-semibold text-gray-950">Nuevo chat</p>
-        <button className="flex h-6 w-6 items-center justify-center rounded-full bg-gray-100 text-gray-400 hover:bg-gray-200">
-          <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-
-      {/* Phone input */}
-      <div className="flex items-center gap-2 rounded-xl bg-gray-50 px-3 py-2.5 ring-1 ring-black/5">
-        <span className="font-inter text-sm text-gray-400">+</span>
-        <span className="font-inter text-sm text-gray-800">54 9 11 5555 1234</span>
-        <span className="ml-auto h-4 w-px animate-pulse bg-gray-400" />
-      </div>
-
-      {/* Contact save option */}
-      <div className="mt-3 rounded-xl bg-gray-50 p-3 ring-1 ring-black/5">
-        <p className="font-inter text-xs font-medium text-gray-500 mb-2">Guardar contacto en</p>
-        <div className="flex gap-2">
-          <div className="flex flex-1 items-center gap-2 rounded-lg bg-white px-3 py-2 ring-1 ring-volt-green shadow-xs">
-            <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" fill="none">
-              <path d="M13 2L3 14h8l-1 8 11-12h-8l1-8z" fill="#58b836" />
-            </svg>
-            <span className="font-inter text-xs font-semibold text-gray-800">Solo Volt</span>
-          </div>
-          <div className="flex flex-1 items-center gap-2 rounded-lg bg-white px-3 py-2 ring-1 ring-black/5">
-            <svg className="h-4 w-4 shrink-0 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 8.25h3" />
-            </svg>
-            <span className="font-inter text-xs text-gray-600">Volt + celular</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Actions */}
-      <div className="mt-4 flex gap-2">
-        <button className="flex flex-1 items-center justify-center gap-1.5 rounded-full bg-[#1a1a1a] px-4 py-2.5 font-inter text-xs font-semibold text-white">
-          Enviar mensaje
-        </button>
-        <button className="flex items-center gap-1.5 rounded-full px-4 py-2.5 font-inter text-xs font-semibold text-volt-green ring-1 ring-volt-green/30">
-          <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-            <circle cx="12" cy="12" r="10" />
-            <path strokeLinecap="round" d="M12 6v6l4 2" />
-          </svg>
-          Programar
-        </button>
-      </div>
-
-    </div>
+    <img
+      src="/screenshots/new-chat.png"
+      alt="Nuevo chat por número de teléfono"
+      className="w-full rounded-2xl shadow-lg ring-1 ring-black/5"
+    />
   )
 }
 
