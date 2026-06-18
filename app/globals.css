@@ -1,0 +1,51 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-volt-green: #58b836;
+  --color-volt-green-neon: #a0ff79;
+  --color-volt-blue: #66baff;
+  --color-volt-charcoal: #1a1a1a;
+  --color-volt-nightsky: #282b2e;
+  --color-volt-darkblue: #27333e;
+  --color-volt-offwhite: #fcfcfc;
+
+  --font-sans: 'Funnel Sans', system-ui, sans-serif;
+  --font-inter: Inter, sans-serif;
+
+  --radius-4xl: 2rem;
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@layer base {
+  @font-face {
+    font-family: 'Funnel Sans';
+    src: url('/fonts/FunnelSans-Variable.ttf') format('truetype');
+    font-weight: 300 800;
+    font-style: normal;
+    font-display: swap;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes move-x {
+  0% {
+    transform: translateX(var(--move-x-from));
+  }
+  100% {
+    transform: translateX(var(--move-x-to));
+  }
+}
