@@ -59,6 +59,33 @@ function Hero() {
   )
 }
 
+// ─── Step icons ───────────────────────────────────────────────────────────────
+
+const stepIcons = {
+  download: (
+    // Volt bolt
+    <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none">
+      <path d="M13 2L3 14h8l-1 8 11-12h-8l1-8z" fill="#1a1a1a" />
+    </svg>
+  ),
+  whatsapp: (
+    // QR code icon
+    <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="#1a1a1a" strokeWidth={1.5}>
+      <rect x="3" y="3" width="7" height="7" rx="1" />
+      <rect x="14" y="3" width="7" height="7" rx="1" />
+      <rect x="3" y="14" width="7" height="7" rx="1" />
+      <path strokeLinecap="round" d="M14 14h.01M18 14h.01M14 18h.01M18 18h.01M16 16h.01" />
+    </svg>
+  ),
+  cloud: (
+    // Cloud + bolt
+    <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none">
+      <path d="M17.5 19H9a5 5 0 01-.5-9.97A7 7 0 0119 13a4 4 0 01-1.5 6z" stroke="#1a1a1a" strokeWidth={1.5} strokeLinejoin="round" />
+      <path d="M13 13l-2 3h3l-2 3" stroke="#58b836" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  ),
+}
+
 // ─── Getting Started ──────────────────────────────────────────────────────────
 
 function GettingStarted() {
@@ -68,32 +95,59 @@ function GettingStarted() {
   return (
     <section className="bg-white py-24 sm:py-32">
       <Container>
-        <FadeUp>
+        <FadeUp className="text-center">
           <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-gray-400">
             {t(s.eyebrow, lang)}
           </p>
-          <h2 className="mt-2 max-w-2xl text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">
+          <h2 className="mx-auto mt-3 max-w-xl text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">
             {t(s.title, lang)}
           </h2>
         </FadeUp>
 
-        <Stagger className="mt-12 grid grid-cols-1 gap-6 sm:mt-16 sm:grid-cols-2 lg:grid-cols-4">
-          {s.steps.map((step) => (
-            <StaggerItem key={step.num}>
-              <div className="flex h-full flex-col rounded-2xl bg-white p-8 shadow-xs ring-1 ring-black/5">
-                <div className="mb-5 flex h-9 w-9 items-center justify-center rounded-full bg-[#1a1a1a]">
-                  <span className="font-inter text-sm font-semibold text-white">{step.num}</span>
-                </div>
-                <h3 className="text-base font-medium tracking-tight text-gray-950">
-                  {t(step.title, lang)}
-                </h3>
-                <p className="mt-2 font-inter text-sm/6 text-gray-500">
-                  {t(step.desc, lang)}
-                </p>
+        {/* 3 centered steps */}
+        <div className="mx-auto mt-16 grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-3">
+          {s.steps.map((step, i) => (
+            <motion.div
+              key={step.id}
+              initial={{ opacity: 0, y: 28, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay: i * 0.15 }}
+              viewport={{ once: true, margin: '-8%' }}
+              className="flex flex-col items-center rounded-2xl bg-white p-8 text-center shadow-xs ring-1 ring-black/5"
+            >
+              {/* Icon */}
+              <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gray-50 ring-1 ring-black/5">
+                {stepIcons[step.id]}
               </div>
-            </StaggerItem>
+
+              <h3 className="text-base font-semibold tracking-tight text-gray-950">
+                {t(step.title, lang)}
+              </h3>
+              <p className="mt-2 font-inter text-sm/6 text-gray-500">
+                {t(step.desc, lang)}
+              </p>
+
+              {step.href && (
+                <a
+                  href={step.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-5 inline-flex items-center gap-1.5 rounded-full bg-[#1a1a1a] px-4 py-2 font-inter text-xs font-semibold text-white transition hover:bg-volt-green"
+                >
+                  {t(step.cta, lang)}
+                  <svg className="size-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
+              )}
+            </motion.div>
           ))}
-        </Stagger>
+        </div>
+
+        {/* Connecting dots between steps — desktop only */}
+        <div className="relative mx-auto mt-0 hidden max-w-3xl sm:block" aria-hidden>
+          <div className="absolute -top-[calc(50%+3rem)] left-[33%] right-[33%] h-px bg-gray-100" />
+        </div>
       </Container>
     </section>
   )
