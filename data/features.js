@@ -124,4 +124,54 @@ export const ui = {
       en: 'The fastest WhatsApp experience on earth.',
     },
   },
+  gettingStarted: {
+    eyebrow: { es: 'Primeros pasos', en: 'Getting started' },
+    title: { es: 'Estás a 2 QRs de estar listo.', en: "You're 2 QR codes away from being ready." },
+    steps: [
+      {
+        num: 1,
+        title: { es: 'Descargá Volt', en: 'Download Volt' },
+        desc: { es: 'Disponible para Mac y Windows. Instalación en minutos.', en: 'Available for Mac and Windows. Ready in minutes.' },
+      },
+      {
+        num: 2,
+        title: { es: 'Escaneá el primer QR', en: 'Scan the first QR' },
+        desc: { es: 'Abrí Volt y vinculá tu WhatsApp escaneando el código QR desde tu teléfono.', en: 'Open Volt and link your WhatsApp by scanning the QR code from your phone.' },
+      },
+      {
+        num: 3,
+        title: { es: 'Empezá a usar Volt', en: 'Start using Volt' },
+        desc: { es: 'Ya tenés acceso a Volt. Tu Inbox y todas tus conversaciones de WhatsApp, acá.', en: 'You now have access to Volt. Your Inbox and all your WhatsApp conversations, right here.' },
+      },
+      {
+        num: 4,
+        title: { es: 'Activá Volt Cloud', en: 'Activate Volt Cloud' },
+        desc: { es: 'Escaneá el segundo QR para desbloquear el 100% de las funcionalidades, incluyendo IA y mensajes programados.', en: 'Scan the second QR to unlock 100% of features, including AI and scheduled messages.' },
+      },
+    ],
+  },
+  tasks: {
+    eyebrow: { es: 'Tareas & Recordatorios', en: 'Tasks & Reminders' },
+    title: { es: 'Nada se escapa.', en: 'Nothing slips through.' },
+    description: {
+      es: 'Pasá el cursor sobre cualquier mensaje, hacé clic en el cuadradito y Volt genera una tarea automáticamente con IA. Podés programarla, reorganizarla y darle check cuando la terminés.',
+      en: 'Hover over any message, click the checkbox, and Volt automatically generates a task with AI. Schedule it, reorganize it, and check it off when done.',
+    },
+    tip: {
+      es: 'Podés asignar tareas a un compañero de equipo y también ver qué tareas tienen asignadas cada uno. Todo desde Volt.',
+      en: 'You can assign tasks to a teammate and see what tasks everyone on your team has assigned. All from Volt.',
+    },
+  },
+  sendLater: {
+    eyebrow: { es: 'Mensajes programados', en: 'Scheduled messages' },
+    title: { es: 'Enviá en el momento perfecto.', en: 'Send at the perfect time.' },
+    description: {
+      es: 'Escribí un mensaje en cualquier chat y usá el botón "Enviar más tarde" para elegir cuándo se envía. Funciona aunque tu computadora esté apagada.',
+      en: 'Write a message in any chat and use the "Send later" button to choose when it sends. Works even if your computer is off.',
+    },
+    tip: {
+      es: 'Después de escribir el mensaje, presioná ⌘S en Mac o Ctrl+S en Windows para programarlo directamente sin tocar el mouse.',
+      en: 'After writing your message, press ⌘S on Mac or Ctrl+S on Windows to schedule it without touching the mouse.',
+    },
+  },
 }
