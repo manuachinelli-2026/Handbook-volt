@@ -181,11 +181,6 @@ function TasksSection() {
 function SendLaterSection() {
   const { lang } = useLanguage()
   const s = ui.sendLater
-  const shots = [
-    { src: '/screenshots/send-later-compose.png', alt: 'Escribir mensaje' },
-    { src: '/screenshots/send-later-button.png',  alt: 'Botón Send Later' },
-    { src: '/screenshots/send-later-time.png',    alt: 'Elegir cuándo enviarlo' },
-  ]
   const tipText = lang === 'es'
     ? <>Después de escribir el mensaje, presioná{' '}
         <kbd className="inline-flex items-center rounded-md border border-gray-200 bg-white px-2 py-0.5 font-mono text-xs text-gray-700 shadow-xs">⌘S</kbd>
@@ -202,21 +197,41 @@ function SendLaterSection() {
     <section className="bg-white py-24 sm:py-32">
       <Container>
         <div className="grid grid-cols-1 items-start gap-16 lg:grid-cols-2">
-          {/* Images — left */}
+          {/* Images — left: button strip on top, time picker below */}
           <SlideIn from="left">
-            <div className="space-y-3">
-              {shots.map((s, i) => (
+            <div className="space-y-4">
+              {/* Step 1: the Send Later button in chat */}
+              <div>
+                <p className="mb-2 font-inter text-xs font-semibold uppercase tracking-widest text-gray-400">
+                  {lang === 'es' ? 'Paso 1 — Clic en "Send Later"' : 'Step 1 — Click "Send Later"'}
+                </p>
+                <div className="overflow-hidden rounded-2xl bg-gray-50 p-3 ring-1 ring-black/5">
+                  <motion.img
+                    src="/screenshots/send-later-button.png"
+                    alt="Botón Send Later"
+                    className="w-full rounded-xl object-contain shadow-sm"
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, ease }}
+                    viewport={vp}
+                  />
+                </div>
+              </div>
+              {/* Step 2: the time picker */}
+              <div>
+                <p className="mb-2 font-inter text-xs font-semibold uppercase tracking-widest text-gray-400">
+                  {lang === 'es' ? 'Paso 2 — Elegí cuándo enviarlo' : 'Step 2 — Choose when to send it'}
+                </p>
                 <motion.img
-                  key={s.src}
-                  src={s.src}
-                  alt={s.alt}
+                  src="/screenshots/send-later-time.png"
+                  alt="Elegir cuándo enviarlo"
                   className="w-full rounded-2xl shadow-sm ring-1 ring-black/5"
-                  initial={{ opacity: 0, y: 24 }}
+                  initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease, delay: i * 0.14 }}
+                  transition={{ duration: 0.6, ease, delay: 0.14 }}
                   viewport={vp}
                 />
-              ))}
+              </div>
             </div>
           </SlideIn>
           {/* Text — right */}
@@ -342,7 +357,7 @@ function PrivacyModeSection() {
           </FadeUp>
         </div>
         <ScaleIn delay={0.15}>
-          <div className="mt-12 overflow-hidden rounded-2xl shadow-lg ring-1 ring-black/5">
+          <div className="mx-auto mt-12 max-w-lg overflow-hidden rounded-2xl shadow-lg ring-1 ring-black/5">
             <img src="/screenshots/privacy-mode.png" alt="Privacy mode" className="w-full" />
           </div>
         </ScaleIn>
@@ -442,40 +457,56 @@ function BroadcastSection() {
             <TipCallout>{t(s.tip, lang)}</TipCallout>
           </SlideIn>
 
-          {/* Right: type selector on top, compose below */}
+          {/* Right: 3 numbered steps */}
           <SlideIn from="right" delay={0.15}>
-            <div className="space-y-4">
-              {/* Top row: menu + type side by side */}
-              <div className="flex items-start gap-3">
+            <div className="space-y-5">
+              {/* Step 1 — open Broadcast */}
+              <div>
+                <p className="mb-2 font-inter text-xs font-semibold uppercase tracking-widest text-gray-400">
+                  {lang === 'es' ? 'Paso 1 — Abrí Broadcast' : 'Step 1 — Open Broadcast'}
+                </p>
                 <motion.img
                   src="/screenshots/broadcast-menu.png"
                   alt="Acceder a Broadcast"
-                  className="w-1/3 rounded-2xl shadow-sm ring-1 ring-black/5"
+                  className="w-full rounded-2xl shadow-sm ring-1 ring-black/5"
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, ease }}
                   viewport={vp}
                 />
+              </div>
+              {/* Step 2 — choose type */}
+              <div>
+                <p className="mb-2 font-inter text-xs font-semibold uppercase tracking-widest text-gray-400">
+                  {lang === 'es' ? 'Paso 2 — Elegí a quién enviar' : 'Step 2 — Choose who to send to'}
+                </p>
                 <motion.img
                   src="/screenshots/broadcast-type.png"
                   alt="Elegir tipo de broadcast"
-                  className="w-2/3 rounded-2xl shadow-sm ring-1 ring-black/5"
+                  className="w-full rounded-2xl shadow-sm ring-1 ring-black/5"
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, ease, delay: 0.12 }}
                   viewport={vp}
                 />
               </div>
-              {/* Compose — full width below */}
-              <motion.img
-                src="/screenshots/broadcast-compose.png"
-                alt="Redactar y enviar"
-                className="w-full rounded-2xl shadow-sm ring-1 ring-black/5"
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease, delay: 0.24 }}
-                viewport={vp}
-              />
+              {/* Step 3 — compose, capped height so it doesn't overflow */}
+              <div>
+                <p className="mb-2 font-inter text-xs font-semibold uppercase tracking-widest text-gray-400">
+                  {lang === 'es' ? 'Paso 3 — Redactá y enviá' : 'Step 3 — Write and send'}
+                </p>
+                <div className="max-h-80 overflow-hidden rounded-2xl shadow-sm ring-1 ring-black/5">
+                  <motion.img
+                    src="/screenshots/broadcast-compose.png"
+                    alt="Redactar y enviar"
+                    className="w-full object-top"
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, ease, delay: 0.24 }}
+                    viewport={vp}
+                  />
+                </div>
+              </div>
             </div>
           </SlideIn>
         </div>
@@ -512,7 +543,7 @@ const miniFeatures = [
     key: 'archive',
     images: ['/screenshots/archive-list.png'],
     eyebrow: { es: 'Archivar lista', en: 'Archive list' },
-    title: { es: 'Desconectate de golpe.', en: 'Disconnect in one click.' },
+    title: { es: 'Antes de irte, archivá toda una lista.', en: 'Before you leave, archive an entire list.' },
     desc: {
       es: 'Clic derecho sobre una lista → Archive list. Todos los chats quedan archivados de una vez.',
       en: 'Right-click a list → Archive list. All chats in that list get archived at once.',
