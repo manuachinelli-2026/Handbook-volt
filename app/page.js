@@ -1,15 +1,20 @@
+'use client'
+
+import { useLanguage, t } from '@/contexts/language'
 import { Container } from '@/components/container'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
-import { Heading, Subheading } from '@/components/text'
-import { Button } from '@/components/button'
+import { YoutubeEmbed } from '@/components/video'
 import { FadeUp, FadeIn, SlideIn, ScaleIn, Stagger, StaggerItem } from '@/components/animate'
+import { features, ui } from '@/data/features'
 import { ChevronRightIcon } from '@heroicons/react/16/solid'
-import Link from 'next/link'
 
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 
 function Hero() {
+  const { lang } = useLanguage()
+  const h = ui.hero
+
   return (
     <div
       className="relative overflow-hidden rounded-b-4xl"
@@ -17,48 +22,45 @@ function Hero() {
     >
       <Container className="relative">
         <Navbar dark />
-        <div className="pb-24 pt-16 text-center sm:pb-36 sm:pt-24">
+
+        <div className="pb-28 pt-16 text-center sm:pb-40 sm:pt-20">
           <FadeIn>
             <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green-neon/60">
-              Interno · Volt
+              {t(h.eyebrow, lang)}
             </p>
           </FadeIn>
 
           <FadeUp delay={0.1}>
             <h1 className="mt-6 tracking-tight">
-              <span className="block text-4xl/[1.1] font-light text-white sm:text-7xl/[1.1]">
-                Handbook
-              </span>
-              <span className="block text-5xl/[0.85] font-semibold text-volt-green-neon sm:text-8xl/[0.85]">
-                Volt
-              </span>
+              {t(h.title, lang).split('\n').map((line, i) => (
+                <span
+                  key={i}
+                  className={
+                    i === 2
+                      ? 'block text-5xl/[0.85] font-semibold text-volt-green-neon sm:text-8xl/[0.85]'
+                      : 'block text-4xl/[1.1] font-light text-white sm:text-7xl/[1.1]'
+                  }
+                >
+                  {line}
+                </span>
+              ))}
             </h1>
           </FadeUp>
 
           <FadeUp delay={0.25}>
-            <p className="mx-auto mt-8 max-w-xl font-inter text-base/snug font-normal text-white/70 sm:text-lg/snug">
-              Todo lo que necesitás saber para trabajar en Volt.
-              <br />
-              Cultura, proceso, expectativas y más.
+            <p className="mx-auto mt-8 max-w-lg font-inter text-base/snug font-normal text-white/70 sm:text-lg/snug">
+              {t(h.subtitle, lang)}
             </p>
           </FadeUp>
 
           <FadeUp delay={0.4}>
-            <div className="mt-12 flex flex-col items-center justify-center gap-x-6 gap-y-4 sm:flex-row">
-              <Button
-                href="/cultura"
-                className="border-transparent! bg-[#A0FF79]! text-lg font-semibold text-[#1a2e3f]! hover:bg-[#8ae866]!"
-              >
-                Empezar a leer
-              </Button>
-              <Button
-                variant="secondary"
-                href="/equipo"
-                className="bg-transparent! text-lg text-[#A0FF79]! ring-[#A0FF79]/40! after:shadow-none! hover:bg-[#A0FF79]/10!"
-              >
-                Conocer el equipo
-              </Button>
-            </div>
+            <a
+              href="#features"
+              className="mt-12 inline-flex items-center gap-2 rounded-full bg-volt-green-neon px-6 py-3 font-inter text-base font-semibold text-[#1a2e3f] transition hover:bg-[#8ae866]"
+            >
+              {t(h.cta, lang)}
+              <ChevronRightIcon className="size-4" />
+            </a>
           </FadeUp>
         </div>
       </Container>
@@ -66,71 +68,117 @@ function Hero() {
   )
 }
 
-// ─── Index Section ────────────────────────────────────────────────────────────
+// ─── Bento overview grid ──────────────────────────────────────────────────────
 
-const slides = [
-  {
-    eyebrow: 'Cultura',
-    title: 'Quiénes somos y cómo trabajamos',
-    description: 'Nuestros valores, principios y la forma en que tomamos decisiones.',
-    href: '/cultura',
-  },
-  {
-    eyebrow: 'Proceso',
-    title: 'Cómo construimos Volt',
-    description: 'Rituales de equipo, herramientas, ciclos de trabajo y shipping.',
-    href: '/proceso',
-  },
-  {
-    eyebrow: 'Equipo',
-    title: 'Las personas detrás de Volt',
-    description: 'Quiénes somos, cómo comunicarnos y cómo colaborar.',
-    href: '/equipo',
-  },
-  {
-    eyebrow: 'Onboarding',
-    title: 'Tus primeros días en Volt',
-    description: 'Todo lo que necesitás configurar y aprender en tu primera semana.',
-    href: '/onboarding',
-  },
-]
-
-function IndexSection() {
+function BentoCard({ feature, lang }) {
   return (
-    <div className="bg-linear-to-b from-white from-50% to-gray-100 py-24 sm:py-32">
+    <div className="group relative flex flex-col overflow-hidden rounded-2xl bg-white shadow-xs ring-1 ring-black/5 transition duration-300 hover:shadow-md hover:ring-black/10">
+      {/* Video / placeholder graphic area */}
+      <div className="relative aspect-video bg-gray-50">
+        {feature.youtubeId ? (
+          <YoutubeEmbed id={feature.youtubeId} title={t(feature.title, lang)} />
+        ) : (
+          <div className="flex h-full items-center justify-center">
+            <div className="size-16 rounded-full bg-volt-green-neon/20 flex items-center justify-center">
+              <span className="text-2xl">⚡</span>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Text */}
+      <div className="p-8">
+        <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-gray-400">
+          {t(feature.eyebrow, lang)}
+        </p>
+        <h3 className="mt-2 text-xl/7 font-normal tracking-tight text-volt-charcoal">
+          {t(feature.title, lang)}
+        </h3>
+        <p className="mt-2 font-inter text-sm/6 text-gray-500">
+          {t(feature.description, lang)}
+        </p>
+      </div>
+    </div>
+  )
+}
+
+function FeaturesGrid() {
+  const { lang } = useLanguage()
+  const f = ui.features
+
+  return (
+    <section id="features" className="bg-white py-24 sm:py-32">
       <Container>
         <FadeUp>
-          <Subheading>Contenido</Subheading>
-          <Heading as="h2" className="mt-2 max-w-3xl">
-            Todo lo que necesitás saber.
-          </Heading>
+          <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-gray-400">
+            {t(f.heading, lang)}
+          </p>
+          <h2 className="mt-2 max-w-2xl text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">
+            {t(f.subheading, lang)}
+          </h2>
         </FadeUp>
 
-        <Stagger className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 sm:grid-cols-2">
-          {slides.map((slide) => (
-            <StaggerItem key={slide.href}>
-              <Link
-                href={slide.href}
-                className="group relative flex flex-col overflow-hidden rounded-2xl bg-white p-8 shadow-xs ring-1 ring-black/5 transition hover:shadow-md hover:ring-black/10 h-full"
-              >
-                <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-gray-500">
-                  {slide.eyebrow}
-                </p>
-                <h3 className="mt-2 text-xl/7 font-normal tracking-tight text-volt-charcoal">
-                  {slide.title}
-                </h3>
-                <p className="mt-2 font-inter text-sm/6 text-gray-500">
-                  {slide.description}
-                </p>
-                <div className="mt-auto pt-6 flex items-center gap-1 font-inter text-sm/5 font-medium text-volt-green">
-                  Leer
-                  <ChevronRightIcon className="size-4 fill-volt-green transition-transform group-hover:translate-x-0.5" />
-                </div>
-              </Link>
+        <Stagger className="mt-12 grid grid-cols-1 gap-6 sm:mt-16 sm:grid-cols-2 lg:grid-cols-3">
+          {features.map((feature) => (
+            <StaggerItem key={feature.id}>
+              <BentoCard feature={feature} lang={lang} />
             </StaggerItem>
           ))}
         </Stagger>
       </Container>
+    </section>
+  )
+}
+
+// ─── Individual feature sections ──────────────────────────────────────────────
+
+function FeatureSection({ feature, index }) {
+  const { lang } = useLanguage()
+  const even = index % 2 === 0
+
+  return (
+    <section className="border-t border-gray-100 py-24 sm:py-32">
+      <Container>
+        <div className={`flex flex-col gap-12 lg:flex-row lg:items-center ${even ? '' : 'lg:flex-row-reverse'}`}>
+
+          {/* Text */}
+          <SlideIn from={even ? 'left' : 'right'} className="flex-1">
+            <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green">
+              {t(feature.eyebrow, lang)}
+            </p>
+            <h2 className="mt-3 text-3xl font-normal tracking-tighter text-gray-950 sm:text-5xl">
+              {t(feature.title, lang)}
+            </h2>
+            <p className="mt-5 font-inter text-base/7 text-gray-500">
+              {t(feature.description, lang)}
+            </p>
+          </SlideIn>
+
+          {/* Video */}
+          <SlideIn from={even ? 'right' : 'left'} delay={0.1} className="flex-1">
+            {feature.youtubeId ? (
+              <ScaleIn>
+                <YoutubeEmbed id={feature.youtubeId} title={t(feature.title, lang)} />
+              </ScaleIn>
+            ) : (
+              <div className="flex aspect-video items-center justify-center rounded-2xl bg-gray-50 ring-1 ring-black/5">
+                <p className="font-inter text-sm text-gray-400">Video coming soon</p>
+              </div>
+            )}
+          </SlideIn>
+
+        </div>
+      </Container>
+    </section>
+  )
+}
+
+function FeatureSections() {
+  return (
+    <div className="bg-white">
+      {features.map((feature, i) => (
+        <FeatureSection key={feature.id} feature={feature} index={i} />
+      ))}
     </div>
   )
 }
@@ -142,7 +190,8 @@ export default function Home() {
     <div className="overflow-x-clip bg-white">
       <Hero />
       <main>
-        <IndexSection />
+        <FeaturesGrid />
+        <FeatureSections />
       </main>
       <Footer />
     </div>
