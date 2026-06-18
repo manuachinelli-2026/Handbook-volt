@@ -189,6 +189,22 @@ export const ui = {
       en: 'After writing your message, press ⌘S on Mac or Ctrl+S on Windows to schedule it without touching the mouse.',
     },
   },
+  voiceTranscription: {
+    eyebrow: { es: 'Transcripción con IA', en: 'AI transcription' },
+    title: { es: 'Leé audios largos en segundos.', en: 'Read long voice messages in seconds.' },
+    description: {
+      es: 'Cuando recibís un mensaje de voz, Volt lo transcribe automáticamente con IA y genera un resumen en bullets con los puntos más importantes. Sin necesidad de escucharlo, podés entender de qué se trata al instante.',
+      en: 'When you receive a voice message, Volt automatically transcribes it with AI and generates a bullet-point summary of the most important points. No need to listen — you can understand what it\'s about instantly.',
+    },
+    tip: {
+      es: 'Para leer la transcripción completa y literal, hacé clic en "Show Volt transcription" debajo del audio.',
+      en: 'To read the full word-for-word transcription, click "Show Volt transcription" below the audio.',
+    },
+    useCases: {
+      es: 'Ideal para cuando estás en una llamada con un cliente o en una reunión y no podés escuchar el audio: leés el resumen en segundos y no dejás nada para después.',
+      en: 'Perfect for when you\'re on a client call or in a meeting and can\'t play the audio: read the summary in seconds and leave nothing for later.',
+    },
+  },
   appStore: {
     eyebrow: { es: 'App Store', en: 'App Store' },
     title: { es: 'Conectá Volt con tus herramientas.', en: 'Connect Volt with your tools.' },
