@@ -6,7 +6,6 @@ import { Container } from '@/components/container'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { YoutubeEmbed } from '@/components/video'
-import { LogoMarquee } from '@/components/logo-marquee'
 import { FadeUp, FadeIn, SlideIn, ScaleIn, Stagger, StaggerItem } from '@/components/animate'
 import { features, ui } from '@/data/features'
 
@@ -20,24 +19,30 @@ function Hero() {
     <section className="relative flex min-h-screen flex-col items-center justify-center bg-white">
       <div className="w-full px-6 pb-24 pt-32 text-center">
 
-        <FadeUp>
+        {/* Volt badge — black square + green bolt */}
+        <FadeIn>
+          <div className="mx-auto mb-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#1a1a1a]">
+            <svg
+              viewBox="0 0 24 24"
+              className="h-8 w-8"
+              fill="none"
+            >
+              <path
+                d="M13 2L3 14h8l-1 8 11-12h-8l1-8z"
+                fill="#58b836"
+              />
+            </svg>
+          </div>
+        </FadeIn>
+
+        <FadeUp delay={0.1}>
           <h1 className="mx-auto max-w-3xl text-5xl font-normal tracking-tighter text-gray-950 sm:text-6xl lg:text-7xl">
             {t(h.title, lang)}
           </h1>
         </FadeUp>
 
-        {/* Integration logos marquee */}
-        <FadeIn delay={0.2}>
-          <div className="mx-auto mt-14 max-w-3xl">
-            <p className="mb-5 font-inter text-xs/5 font-normal uppercase tracking-widest text-gray-400">
-              {lang === 'es' ? 'Integraciones' : 'Integrations'}
-            </p>
-            <LogoMarquee />
-          </div>
-        </FadeIn>
-
         {/* Scroll invitation */}
-        <FadeUp delay={0.4}>
+        <FadeUp delay={0.3}>
           <div className="mt-16 flex flex-col items-center gap-3">
             <span className="font-inter text-sm font-normal text-gray-400">
               {t(h.cta, lang)}
