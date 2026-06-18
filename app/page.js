@@ -226,35 +226,27 @@ function TasksSection() {
 
 // ─── Send Later Section ───────────────────────────────────────────────────────
 
+const sendLaterShots = [
+  { src: '/screenshots/send-later-compose.png', alt: 'Escribir mensaje con Send Later' },
+  { src: '/screenshots/send-later-button.png',  alt: 'Botón Send Later en el chat' },
+  { src: '/screenshots/send-later-time.png',    alt: 'Elegir cuándo enviarlo' },
+]
+
 function SendLaterMockup() {
   return (
-    <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-black/5">
-      {/* Chat area */}
-      <div className="mb-4 flex justify-end">
-        <div className="max-w-xs rounded-2xl rounded-tr-sm bg-[#dcf8c6] px-4 py-3">
-          <p className="font-inter text-sm/6 text-gray-800">
-            Hola Marco, ¿cómo va el proyecto? 👋
-          </p>
-          <p className="mt-1 text-right font-inter text-xs text-gray-500">8:52 AM</p>
-        </div>
-      </div>
-
-      {/* Input bar */}
-      <div className="flex items-center gap-2 rounded-xl bg-gray-50 px-4 py-3 ring-1 ring-black/5">
-        <p className="flex-1 font-inter text-sm text-gray-400">Escribí un mensaje...</p>
-        <button className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 font-inter text-xs font-semibold text-volt-green ring-1 ring-volt-green/30">
-          <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-            <circle cx="12" cy="12" r="10" />
-            <path strokeLinecap="round" d="M12 6v6l4 2" />
-          </svg>
-          Send Later
-        </button>
-      </div>
-
-      {/* Scheduled indicator */}
-      <div className="mt-3 flex items-center gap-2">
-        <span className="font-inter text-xs text-gray-400">📅 Agendado · mañana 9:00 AM</span>
-      </div>
+    <div className="space-y-3">
+      {sendLaterShots.map((s, i) => (
+        <motion.img
+          key={s.src}
+          src={s.src}
+          alt={s.alt}
+          className="w-full rounded-2xl shadow-sm ring-1 ring-black/5"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1], delay: i * 0.12 }}
+          viewport={{ once: true, margin: '-8%' }}
+        />
+      ))}
     </div>
   )
 }
