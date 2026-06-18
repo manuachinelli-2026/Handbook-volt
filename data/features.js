@@ -269,6 +269,18 @@ export const ui = {
       en: 'Activate it from the App Store inside Volt.',
     },
   },
+  archiveList: {
+    eyebrow: { es: 'Archivar lista', en: 'Archive list' },
+    title: { es: 'Desconectate sin silenciar nada.', en: 'Disconnect without muting anything.' },
+    description: {
+      es: 'Hacé clic derecho sobre cualquier lista y seleccioná "Archive list". Todos los chats de esa lista quedan archivados de una sola vez: ideal para el fin de semana o cuando salís de vacaciones y no querés silenciar contacto por contacto.',
+      en: 'Right-click any list and select "Archive list". All the chats in that list get archived at once — perfect for weekends or holidays when you don\'t want to mute contact by contact.',
+    },
+    tip: {
+      es: 'También podés hacerlo con el atajo ⌘⇧E en Mac o Ctrl+Shift+E en Windows.',
+      en: 'You can also do it with ⌘⇧E on Mac or Ctrl+Shift+E on Windows.',
+    },
+  },
   broadcast: {
     eyebrow: { es: 'Broadcast', en: 'Broadcast' },
     title: { es: 'Comunicá a todos al mismo tiempo.', en: 'Message everyone at once.' },
