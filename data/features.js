@@ -189,6 +189,18 @@ export const ui = {
       en: 'After writing your message, press ⌘S on Mac or Ctrl+S on Windows to schedule it without touching the mouse.',
     },
   },
+  meetIntegration: {
+    eyebrow: { es: 'Google Meet · Zoom', en: 'Google Meet · Zoom' },
+    title: { es: 'Creá un link de reunión en segundos.', en: 'Create a meeting link in seconds.' },
+    description: {
+      es: 'Escribí /meet en cualquier chat y Volt genera al instante un link de Google Meet listo para compartir con tu cliente. Si usás Zoom, funciona exactamente igual: escribí /zoom y el link aparece en el mensaje.',
+      en: 'Type /meet in any chat and Volt instantly generates a Google Meet link ready to share with your client. If you use Zoom, it works exactly the same: type /zoom and the link appears in your message.',
+    },
+    tip: {
+      es: 'No necesitás abrir el navegador ni copiar y pegar nada. El link se inserta directamente en el chat.',
+      en: 'No need to open a browser or copy and paste anything. The link is inserted directly into the chat.',
+    },
+  },
   voiceTranscription: {
     eyebrow: { es: 'Transcripción con IA', en: 'AI transcription' },
     title: { es: 'Leé audios largos en segundos.', en: 'Read long voice messages in seconds.' },
