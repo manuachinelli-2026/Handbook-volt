@@ -476,11 +476,11 @@ function BroadcastSection() {
                   <span className="font-inter text-xs font-semibold text-gray-400">
                     {i + 1}. {t(step.label, lang)}
                   </span>
-                  <div className="h-72 overflow-hidden rounded-xl shadow-sm ring-1 ring-black/5">
+                  <div className="flex h-72 items-center justify-center overflow-hidden rounded-xl bg-gray-50 p-3 shadow-sm ring-1 ring-black/5">
                     <img
                       src={step.src}
                       alt={t(step.label, lang)}
-                      className="h-full w-full object-cover object-top"
+                      className="max-h-full max-w-full rounded-lg object-contain shadow-sm"
                     />
                   </div>
                 </motion.div>
