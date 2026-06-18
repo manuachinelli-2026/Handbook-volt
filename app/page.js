@@ -1,5 +1,6 @@
 'use client'
 
+import { motion } from 'framer-motion'
 import { useLanguage, t } from '@/contexts/language'
 import { Container } from '@/components/container'
 import { Navbar } from '@/components/navbar'
@@ -7,7 +8,6 @@ import { Footer } from '@/components/footer'
 import { YoutubeEmbed } from '@/components/video'
 import { FadeUp, FadeIn, SlideIn, ScaleIn, Stagger, StaggerItem } from '@/components/animate'
 import { features, ui } from '@/data/features'
-import { ChevronRightIcon } from '@heroicons/react/16/solid'
 
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 
@@ -16,55 +16,41 @@ function Hero() {
   const h = ui.hero
 
   return (
-    <div
-      className="relative overflow-hidden rounded-b-4xl"
-      style={{ backgroundImage: 'linear-gradient(to top right, #1c1f22, #2e4257)' }}
-    >
-      <Container className="relative">
-        <Navbar dark />
+    <section className="relative flex min-h-screen flex-col bg-white">
+      {/* The fixed navbar takes up ~52px — this padding compensates */}
+      <div className="flex flex-1 flex-col items-center justify-center px-6 pb-24 pt-32 text-center">
 
-        <div className="pb-28 pt-16 text-center sm:pb-40 sm:pt-20">
-          <FadeIn>
-            <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green-neon/60">
-              {t(h.eyebrow, lang)}
-            </p>
-          </FadeIn>
+        <FadeUp>
+          <h1 className="mx-auto max-w-3xl text-5xl font-normal tracking-tighter text-gray-950 sm:text-6xl lg:text-7xl">
+            {t(h.title, lang)}
+          </h1>
+        </FadeUp>
 
-          <FadeUp delay={0.1}>
-            <h1 className="mt-6 tracking-tight">
-              {t(h.title, lang).split('\n').map((line, i) => (
-                <span
-                  key={i}
-                  className={
-                    i === 2
-                      ? 'block text-5xl/[0.85] font-semibold text-volt-green-neon sm:text-8xl/[0.85]'
-                      : 'block text-4xl/[1.1] font-light text-white sm:text-7xl/[1.1]'
-                  }
-                >
-                  {line}
-                </span>
-              ))}
-            </h1>
-          </FadeUp>
-
-          <FadeUp delay={0.25}>
-            <p className="mx-auto mt-8 max-w-lg font-inter text-base/snug font-normal text-white/70 sm:text-lg/snug">
-              {t(h.subtitle, lang)}
-            </p>
-          </FadeUp>
-
-          <FadeUp delay={0.4}>
-            <a
-              href="#features"
-              className="mt-12 inline-flex items-center gap-2 rounded-full bg-volt-green-neon px-6 py-3 font-inter text-base font-semibold text-[#1a2e3f] transition hover:bg-[#8ae866]"
-            >
+        {/* Scroll invitation */}
+        <FadeUp delay={0.3}>
+          <div className="mt-20 flex flex-col items-center gap-3">
+            <span className="font-inter text-sm font-normal text-gray-400">
               {t(h.cta, lang)}
-              <ChevronRightIcon className="size-4" />
-            </a>
-          </FadeUp>
-        </div>
-      </Container>
-    </div>
+            </span>
+            {/* Bouncing arrow */}
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
+            >
+              <svg
+                className="size-6 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </motion.div>
+          </div>
+        </FadeUp>
+      </div>
+    </section>
   )
 }
 
@@ -188,6 +174,7 @@ function FeatureSections() {
 export default function Home() {
   return (
     <div className="overflow-x-clip bg-white">
+      <Navbar />
       <Hero />
       <main>
         <FeaturesGrid />

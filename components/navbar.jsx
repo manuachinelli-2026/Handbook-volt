@@ -66,19 +66,14 @@ export function LangSwitcherDark() {
   )
 }
 
-export function Navbar({ dark }) {
-  const [mobileOpen, setMobileOpen] = useState(false)
-
+export function Navbar() {
   return (
-    <header className="relative">
-      <div className="flex items-center justify-between py-5">
+    <header className="fixed inset-x-0 top-0 z-50 bg-[#1a1a1a]">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-8">
         <Link href="/" title="Home">
-          <Logo className="h-9" dark={dark} />
+          <Logo className="h-7" dark />
         </Link>
-
-        <div className="flex items-center gap-4">
-          {dark ? <LangSwitcherDark /> : <LangSwitcher />}
-        </div>
+        <LangSwitcherDark />
       </div>
     </header>
   )

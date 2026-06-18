@@ -105,13 +105,11 @@ export const ui = {
     guide: { es: 'Guía de Volt', en: 'Volt Guide' },
   },
   hero: {
-    eyebrow: { es: 'Guía de usuario', en: 'User guide' },
-    title: { es: 'Todo lo que\npodés hacer\ncon Volt.', en: 'Everything you\ncan do\nwith Volt.' },
-    subtitle: {
-      es: 'Descubrí las funcionalidades que hacen de Volt la app de WhatsApp más poderosa para profesionales.',
-      en: 'Discover the features that make Volt the most powerful WhatsApp app for professionals.',
+    title: {
+      es: 'La app de WhatsApp más poderosa para profesionales y equipos.',
+      en: 'The most powerful WhatsApp app for professionals and teams.',
     },
-    cta: { es: 'Empezar a explorar', en: 'Start exploring' },
+    cta: { es: 'Empezá a explorar', en: 'Start exploring' },
   },
   features: {
     heading: { es: 'Las funcionalidades', en: 'The features' },
