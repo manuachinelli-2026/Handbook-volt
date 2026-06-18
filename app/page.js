@@ -6,49 +6,38 @@ import { Container } from '@/components/container'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { TipCallout } from '@/components/tip-callout'
-import { FadeUp, FadeIn, SlideIn, Stagger, StaggerItem } from '@/components/animate'
+import { FadeUp, FadeIn, SlideIn, ScaleIn } from '@/components/animate'
 import { ui } from '@/data/features'
+
+const ease = [0.22, 1, 0.36, 1]
+const vp = { once: true, margin: '-5%' }
 
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 
 function Hero() {
   const { lang } = useLanguage()
   const h = ui.hero
-
   return (
     <section className="relative flex min-h-screen flex-col items-center justify-center bg-white">
       <div className="w-full px-6 pb-24 pt-32 text-center">
-
-        {/* Volt bolt — standalone, black */}
         <FadeIn>
           <svg viewBox="0 0 24 24" className="mx-auto mb-8 h-12 w-12" fill="none">
             <path d="M13 2L3 14h8l-1 8 11-12h-8l1-8z" fill="#1a1a1a" />
           </svg>
         </FadeIn>
-
         <FadeUp delay={0.1}>
           <h1 className="mx-auto max-w-3xl text-5xl font-normal tracking-tighter text-gray-950 sm:text-6xl lg:text-7xl">
             {t(h.title, lang)}
           </h1>
         </FadeUp>
-
-        {/* Scroll invitation — extra breathing room below heading */}
         <FadeUp delay={0.3}>
           <div className="mt-28 flex flex-col items-center gap-3">
-            <span className="font-inter text-sm font-normal text-gray-400">
-              {t(h.cta, lang)}
-            </span>
+            <span className="font-inter text-sm font-normal text-gray-400">{t(h.cta, lang)}</span>
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
             >
-              <svg
-                className="size-6 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-              >
+              <svg className="size-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
               </svg>
             </motion.div>
@@ -59,18 +48,16 @@ function Hero() {
   )
 }
 
-// ─── Step icons ───────────────────────────────────────────────────────────────
+// ─── Getting Started ──────────────────────────────────────────────────────────
 
 const stepIcons = {
   download: (
-    // Volt bolt
-    <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none">
+    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none">
       <path d="M13 2L3 14h8l-1 8 11-12h-8l1-8z" fill="#1a1a1a" />
     </svg>
   ),
   whatsapp: (
-    // QR code icon
-    <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="#1a1a1a" strokeWidth={1.5}>
+    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="#1a1a1a" strokeWidth={1.5}>
       <rect x="3" y="3" width="7" height="7" rx="1" />
       <rect x="14" y="3" width="7" height="7" rx="1" />
       <rect x="3" y="14" width="7" height="7" rx="1" />
@@ -78,61 +65,45 @@ const stepIcons = {
     </svg>
   ),
   cloud: (
-    // Cloud + bolt
-    <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none">
+    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none">
       <path d="M17.5 19H9a5 5 0 01-.5-9.97A7 7 0 0119 13a4 4 0 01-1.5 6z" stroke="#1a1a1a" strokeWidth={1.5} strokeLinejoin="round" />
       <path d="M13 13l-2 3h3l-2 3" stroke="#58b836" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   ),
 }
 
-// ─── Getting Started ──────────────────────────────────────────────────────────
-
 function GettingStarted() {
   const { lang } = useLanguage()
   const s = ui.gettingStarted
-
   return (
-    <section className="bg-white py-24 sm:py-32">
+    <section className="bg-white py-20 sm:py-28">
       <Container>
         <FadeUp className="text-center">
-          <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-gray-400">
-            {t(s.eyebrow, lang)}
-          </p>
-          <h2 className="mx-auto mt-3 max-w-xl text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">
-            {t(s.title, lang)}
-          </h2>
+          <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-gray-400">{t(s.eyebrow, lang)}</p>
+          <h2 className="mx-auto mt-3 max-w-xl text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">{t(s.title, lang)}</h2>
         </FadeUp>
 
-        {/* 3 centered steps */}
-        <div className="mx-auto mt-16 grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-3">
+        <div className="mx-auto mt-12 grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
           {s.steps.map((step, i) => (
             <motion.div
               key={step.id}
-              initial={{ opacity: 0, y: 28, scale: 0.95 }}
+              initial={{ opacity: 0, y: 32, scale: 0.95 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay: i * 0.15 }}
-              viewport={{ once: true, margin: '-8%' }}
-              className="flex flex-col items-center rounded-2xl bg-white p-8 text-center shadow-xs ring-1 ring-black/5"
+              transition={{ duration: 0.7, ease, delay: i * 0.15 }}
+              viewport={vp}
+              className="flex flex-col items-center rounded-2xl bg-white p-5 text-center shadow-xs ring-1 ring-black/5"
             >
-              {/* Icon */}
-              <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gray-50 ring-1 ring-black/5">
+              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-gray-50 ring-1 ring-black/5">
                 {stepIcons[step.id]}
               </div>
-
-              <h3 className="text-base font-semibold tracking-tight text-gray-950">
-                {t(step.title, lang)}
-              </h3>
-              <p className="mt-2 font-inter text-sm/6 text-gray-500">
-                {t(step.desc, lang)}
-              </p>
-
+              <h3 className="text-sm font-semibold tracking-tight text-gray-950">{t(step.title, lang)}</h3>
+              <p className="mt-1.5 font-inter text-sm/6 text-gray-500">{t(step.desc, lang)}</p>
               {step.href && (
                 <a
                   href={step.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-5 inline-flex items-center gap-1.5 rounded-full bg-[#1a1a1a] px-4 py-2 font-inter text-xs font-semibold text-white transition hover:bg-volt-green"
+                  className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-[#1a1a1a] px-4 py-1.5 font-inter text-xs font-semibold text-white transition hover:bg-volt-green"
                 >
                   {t(step.cta, lang)}
                   <svg className="size-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -143,41 +114,33 @@ function GettingStarted() {
             </motion.div>
           ))}
         </div>
-
-        {/* Connecting dots between steps — desktop only */}
-        <div className="relative mx-auto mt-0 hidden max-w-3xl sm:block" aria-hidden>
-          <div className="absolute -top-[calc(50%+3rem)] left-[33%] right-[33%] h-px bg-gray-100" />
-        </div>
       </Container>
     </section>
   )
 }
 
-// ─── Tasks Section ────────────────────────────────────────────────────────────
-
-const taskScreenshots = [
-  { src: '/screenshots/task-hover.png',    alt: 'Hover sobre el mensaje' },
-  { src: '/screenshots/task-drafting.png', alt: 'Volt redacta la tarea con IA' },
-  { src: '/screenshots/task-modal.png',    alt: 'Confirmá, asignala y guardá' },
-]
+// ─── Tasks Section ─────────────────────────────────────────────────────────────
+// Layout: text LEFT · images RIGHT · bg-gray-50
 
 function TasksMockup() {
+  const shots = [
+    { src: '/screenshots/task-hover.png',    alt: 'Hover sobre el mensaje' },
+    { src: '/screenshots/task-drafting.png', alt: 'Volt redacta la tarea' },
+    { src: '/screenshots/task-modal.png',    alt: 'Confirmá y guardá' },
+  ]
   return (
     <div className="space-y-4">
-      {taskScreenshots.map((s, i) => (
-        <motion.div
+      {shots.map((s, i) => (
+        <motion.img
           key={s.src}
-          initial={{ opacity: 0, y: 16 }}
+          src={s.src}
+          alt={s.alt}
+          className="w-full rounded-2xl shadow-sm ring-1 ring-black/5"
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, ease: [0.25, 0.1, 0.25, 1], delay: i * 0.12 }}
-          viewport={{ once: true, margin: '-8%' }}
-        >
-          <img
-            src={s.src}
-            alt={s.alt}
-            className="w-full rounded-2xl shadow-sm ring-1 ring-black/5"
-          />
-        </motion.div>
+          transition={{ duration: 0.6, ease, delay: i * 0.14 }}
+          viewport={vp}
+        />
       ))}
     </div>
   )
@@ -186,75 +149,43 @@ function TasksMockup() {
 function TasksSection() {
   const { lang } = useLanguage()
   const s = ui.tasks
-
   return (
     <section className="bg-gray-50 py-24 sm:py-32">
       <Container>
         <div className="grid grid-cols-1 items-start gap-16 lg:grid-cols-2">
-
-          {/* Text — left */}
           <SlideIn from="left" className="lg:sticky lg:top-28">
-            <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green">
-              {t(s.eyebrow, lang)}
-            </p>
-            <h2 className="mt-3 text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">
-              {t(s.title, lang)}
-            </h2>
+            <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green">{t(s.eyebrow, lang)}</p>
+            <h2 className="mt-3 text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">{t(s.title, lang)}</h2>
             <ol className="mt-6 space-y-3">
               {s.steps.map((step, i) => (
                 <li key={i} className="flex gap-3">
-                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gray-200 font-inter text-xs font-semibold text-gray-600">
-                    {i + 1}
-                  </span>
+                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gray-200 font-inter text-xs font-semibold text-gray-600">{i + 1}</span>
                   <span className="font-inter text-base/7 text-gray-600">{t(step, lang)}</span>
                 </li>
               ))}
             </ol>
             <TipCallout className="mt-8">{t(s.tip, lang)}</TipCallout>
           </SlideIn>
-
-          {/* Mockup — right, stagger in */}
           <SlideIn from="right" delay={0.15}>
             <TasksMockup />
           </SlideIn>
-
         </div>
       </Container>
     </section>
   )
 }
 
-// ─── Send Later Section ───────────────────────────────────────────────────────
-
-const sendLaterShots = [
-  { src: '/screenshots/send-later-compose.png', alt: 'Escribir mensaje con Send Later' },
-  { src: '/screenshots/send-later-button.png',  alt: 'Botón Send Later en el chat' },
-  { src: '/screenshots/send-later-time.png',    alt: 'Elegir cuándo enviarlo' },
-]
-
-function SendLaterMockup() {
-  return (
-    <div className="space-y-3">
-      {sendLaterShots.map((s, i) => (
-        <motion.img
-          key={s.src}
-          src={s.src}
-          alt={s.alt}
-          className="w-full rounded-2xl shadow-sm ring-1 ring-black/5"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1], delay: i * 0.12 }}
-          viewport={{ once: true, margin: '-8%' }}
-        />
-      ))}
-    </div>
-  )
-}
+// ─── Send Later Section ────────────────────────────────────────────────────────
+// Layout: images LEFT · text RIGHT · bg-white
 
 function SendLaterSection() {
   const { lang } = useLanguage()
   const s = ui.sendLater
-
+  const shots = [
+    { src: '/screenshots/send-later-compose.png', alt: 'Escribir mensaje' },
+    { src: '/screenshots/send-later-button.png',  alt: 'Botón Send Later' },
+    { src: '/screenshots/send-later-time.png',    alt: 'Elegir cuándo enviarlo' },
+  ]
   const tipText = lang === 'es'
     ? <>Después de escribir el mensaje, presioná{' '}
         <kbd className="inline-flex items-center rounded-md border border-gray-200 bg-white px-2 py-0.5 font-mono text-xs text-gray-700 shadow-xs">⌘S</kbd>
@@ -268,25 +199,31 @@ function SendLaterSection() {
         {' '}on Windows to schedule it without touching the mouse.</>
 
   return (
-    <section className="border-t border-gray-100 bg-white py-24 sm:py-32">
+    <section className="bg-white py-24 sm:py-32">
       <Container>
-        <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
-          {/* Mockup — left */}
-          <SlideIn from="right">
-            <SendLaterMockup />
+        <div className="grid grid-cols-1 items-start gap-16 lg:grid-cols-2">
+          {/* Images — left */}
+          <SlideIn from="left">
+            <div className="space-y-3">
+              {shots.map((s, i) => (
+                <motion.img
+                  key={s.src}
+                  src={s.src}
+                  alt={s.alt}
+                  className="w-full rounded-2xl shadow-sm ring-1 ring-black/5"
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, ease, delay: i * 0.14 }}
+                  viewport={vp}
+                />
+              ))}
+            </div>
           </SlideIn>
-
           {/* Text — right */}
-          <SlideIn from="left" delay={0.1}>
-            <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green">
-              {t(s.eyebrow, lang)}
-            </p>
-            <h2 className="mt-3 text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">
-              {t(s.title, lang)}
-            </h2>
-            <p className="mt-5 font-inter text-base/7 text-gray-500">
-              {t(s.description, lang)}
-            </p>
+          <SlideIn from="right" delay={0.15} className="lg:sticky lg:top-28">
+            <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green">{t(s.eyebrow, lang)}</p>
+            <h2 className="mt-3 text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">{t(s.title, lang)}</h2>
+            <p className="mt-5 font-inter text-base/7 text-gray-500">{t(s.description, lang)}</p>
             <TipCallout>{tipText}</TipCallout>
           </SlideIn>
         </div>
@@ -295,168 +232,108 @@ function SendLaterSection() {
   )
 }
 
-// ─── Meet Integration Section ─────────────────────────────────────────────────
-
-function MeetIntegrationSection() {
-  const { lang } = useLanguage()
-  const s = ui.meetIntegration
-
-  return (
-    <section className="bg-gray-50 py-24 sm:py-32">
-      <Container>
-        <div className="grid grid-cols-1 items-start gap-16 lg:grid-cols-2">
-
-          {/* Screenshots — left, stacked */}
-          <SlideIn from="left">
-            <div className="space-y-3">
-              {[
-                { src: '/screenshots/meet-command.png', alt: '/meet en el chat' },
-                { src: '/screenshots/meet-link.png',    alt: 'Link de Google Meet generado' },
-              ].map((s, i) => (
-                <motion.div
-                  key={s.src}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1], delay: i * 0.12 }}
-                  viewport={{ once: true, margin: '-8%' }}
-                >
-                  <img
-                    src={s.src}
-                    alt={s.alt}
-                    className="w-full rounded-2xl shadow-sm ring-1 ring-black/5"
-                  />
-                </motion.div>
-              ))}
-            </div>
-          </SlideIn>
-
-          {/* Text — right */}
-          <SlideIn from="right" delay={0.1}>
-            <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green">
-              {t(s.eyebrow, lang)}
-            </p>
-            <h2 className="mt-3 text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">
-              {t(s.title, lang)}
-            </h2>
-            <p className="mt-5 font-inter text-base/7 text-gray-500">
-              {t(s.description, lang)}
-            </p>
-            <TipCallout>{t(s.tip, lang)}</TipCallout>
-          </SlideIn>
-
-        </div>
-      </Container>
-    </section>
-  )
-}
-
-// ─── Voice Transcription Section ─────────────────────────────────────────────
+// ─── Voice Transcription Section ───────────────────────────────────────────────
+// Layout: text LEFT · image RIGHT · bg-gray-50
 
 function VoiceTranscriptionSection() {
   const { lang } = useLanguage()
   const s = ui.voiceTranscription
-
   return (
-    <section className="border-t border-gray-100 bg-white py-24 sm:py-32">
+    <section className="bg-gray-50 py-24 sm:py-32">
       <Container>
         <div className="grid grid-cols-1 items-start gap-16 lg:grid-cols-2">
-
-          {/* Text — left */}
           <SlideIn from="left" className="lg:sticky lg:top-28">
-            <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green">
-              {t(s.eyebrow, lang)}
-            </p>
-            <h2 className="mt-3 text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">
-              {t(s.title, lang)}
-            </h2>
-            <p className="mt-5 font-inter text-base/7 text-gray-500">
-              {t(s.description, lang)}
-            </p>
-            <p className="mt-4 font-inter text-base/7 text-gray-400 italic">
-              {t(s.useCases, lang)}
-            </p>
+            <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green">{t(s.eyebrow, lang)}</p>
+            <h2 className="mt-3 text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">{t(s.title, lang)}</h2>
+            <p className="mt-5 font-inter text-base/7 text-gray-500">{t(s.description, lang)}</p>
+            <p className="mt-4 font-inter text-base/7 italic text-gray-400">{t(s.useCases, lang)}</p>
             <TipCallout>{t(s.tip, lang)}</TipCallout>
           </SlideIn>
-
-          {/* Screenshot — right */}
-          <SlideIn from="right" delay={0.1}>
-            <img
-              src="/screenshots/voice-transcription.png"
-              alt="Transcripción de audio con IA"
-              className="w-full rounded-2xl shadow-lg ring-1 ring-black/5"
-            />
+          <SlideIn from="right" delay={0.15}>
+            <img src="/screenshots/voice-transcription.png" alt="Transcripción con IA" className="w-full rounded-2xl shadow-lg ring-1 ring-black/5" />
           </SlideIn>
-
         </div>
       </Container>
     </section>
   )
 }
 
-// ─── App Store Section ────────────────────────────────────────────────────────
+// ─── App Store Section ─────────────────────────────────────────────────────────
+// Layout: image LEFT · text RIGHT · bg-white
 
 function AppStoreSection() {
   const { lang } = useLanguage()
   const s = ui.appStore
-
   return (
-    <section className="bg-gray-50 py-24 sm:py-32">
+    <section className="bg-white py-24 sm:py-32">
       <Container>
         <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
-
-          {/* Text — left */}
+          {/* Image — left */}
           <SlideIn from="left">
-            <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green">
-              {t(s.eyebrow, lang)}
-            </p>
-            <h2 className="mt-3 text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">
-              {t(s.title, lang)}
-            </h2>
-            <p className="mt-5 font-inter text-base/7 text-gray-500">
-              {t(s.description, lang)}
-            </p>
+            <img src="/screenshots/app-store.png" alt="Volt App Store" className="w-full max-w-md rounded-2xl shadow-lg ring-1 ring-black/5" />
+          </SlideIn>
+          {/* Text — right */}
+          <SlideIn from="right" delay={0.15}>
+            <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green">{t(s.eyebrow, lang)}</p>
+            <h2 className="mt-3 text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">{t(s.title, lang)}</h2>
+            <p className="mt-5 font-inter text-base/7 text-gray-500">{t(s.description, lang)}</p>
             <TipCallout>{t(s.tip, lang)}</TipCallout>
           </SlideIn>
-
-          {/* Screenshot — right */}
-          <SlideIn from="right" delay={0.1}>
-            <div className="flex justify-center lg:justify-end">
-              <img
-                src="/screenshots/app-store.png"
-                alt="Volt App Store"
-                className="w-full max-w-md rounded-2xl shadow-lg ring-1 ring-black/5"
-              />
-            </div>
-          </SlideIn>
-
         </div>
       </Container>
     </section>
   )
 }
 
-// ─── Privacy Mode Section ─────────────────────────────────────────────────────
+// ─── AI Integration Section ────────────────────────────────────────────────────
+// Full-width break — centered, light green tint, large screenshot
+
+function AiIntegrationSection() {
+  const { lang } = useLanguage()
+  const s = ui.aiIntegration
+  return (
+    <section className="bg-gray-50 py-24 sm:py-32">
+      <Container>
+        <div className="mx-auto max-w-2xl text-center">
+          <FadeUp>
+            <span className="inline-flex items-center gap-2 rounded-full border border-volt-green/40 bg-volt-green/10 px-4 py-1.5">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-volt-green" />
+              <span className="font-inter text-xs font-semibold uppercase tracking-widest text-volt-green">{t(s.eyebrow, lang)}</span>
+            </span>
+            <h2 className="mt-6 text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">{t(s.title, lang)}</h2>
+            <p className="mt-5 font-inter text-base/7 text-gray-500">{t(s.description, lang)}</p>
+          </FadeUp>
+        </div>
+
+        <ScaleIn delay={0.2}>
+          <div className="mx-auto mt-12 max-w-3xl overflow-hidden rounded-2xl shadow-xl ring-2 ring-volt-green/15">
+            <img src="/screenshots/ai-integration.png" alt="IA conectada a Volt" className="w-full" />
+          </div>
+        </ScaleIn>
+
+        <FadeUp delay={0.3}>
+          <p className="mx-auto mt-6 max-w-2xl text-center font-inter text-sm/6 italic text-gray-400">{t(s.example, lang)}</p>
+          <p className="mt-4 text-center font-inter text-sm font-medium text-gray-400">{t(s.cta, lang)}</p>
+        </FadeUp>
+      </Container>
+    </section>
+  )
+}
+
+// ─── Privacy Mode Section ──────────────────────────────────────────────────────
+// Full-width break — centered text, full-width screenshot · bg-white
 
 function PrivacyModeSection() {
   const { lang } = useLanguage()
   const s = ui.privacyMode
-
   return (
-    <section className="border-t border-gray-100 bg-white py-24 sm:py-32">
+    <section className="bg-white py-24 sm:py-32">
       <Container>
-
-        {/* Text — centered above */}
         <div className="mx-auto max-w-2xl text-center">
           <FadeUp>
-            <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green">
-              {t(s.eyebrow, lang)}
-            </p>
-            <h2 className="mt-3 text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">
-              {t(s.title, lang)}
-            </h2>
-            <p className="mt-5 font-inter text-base/7 text-gray-500">
-              {t(s.description, lang)}
-            </p>
+            <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green">{t(s.eyebrow, lang)}</p>
+            <h2 className="mt-3 text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">{t(s.title, lang)}</h2>
+            <p className="mt-5 font-inter text-base/7 text-gray-500">{t(s.description, lang)}</p>
             <div className="mt-6 inline-flex items-center gap-3">
               <kbd className="inline-flex items-center rounded-md border border-gray-200 bg-white px-2.5 py-1 font-mono text-sm text-gray-700 shadow-xs">⌘D</kbd>
               <span className="font-inter text-sm text-gray-400">/</span>
@@ -464,316 +341,226 @@ function PrivacyModeSection() {
             </div>
           </FadeUp>
         </div>
-
-        {/* Screenshot — full width below */}
-        <FadeUp delay={0.15}>
+        <ScaleIn delay={0.15}>
           <div className="mt-12 overflow-hidden rounded-2xl shadow-lg ring-1 ring-black/5">
-            <img
-              src="/screenshots/privacy-mode.png"
-              alt="Privacy mode — chats blurred"
-              className="w-full"
-            />
+            <img src="/screenshots/privacy-mode.png" alt="Privacy mode" className="w-full" />
           </div>
-        </FadeUp>
-
+        </ScaleIn>
       </Container>
     </section>
   )
 }
 
-// ─── Shortcuts Section ────────────────────────────────────────────────────────
+// ─── Shortcuts Section ─────────────────────────────────────────────────────────
+// Layout: image LEFT · text RIGHT · bg-gray-50
 
 function ShortcutsSection() {
   const { lang } = useLanguage()
   const s = ui.shortcuts
-
-  return (
-    <section className="border-t border-gray-100 bg-white py-24 sm:py-32">
-      <Container>
-        <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
-
-          {/* Screenshot — left */}
-          <SlideIn from="left">
-            <div className="flex justify-center lg:justify-start">
-              <img
-                src="/screenshots/shortcuts-menu.png"
-                alt="Keyboard Shortcuts menu"
-                className="w-64 rounded-2xl shadow-lg ring-1 ring-black/5"
-              />
-            </div>
-          </SlideIn>
-
-          {/* Text — right */}
-          <SlideIn from="right" delay={0.1}>
-            <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green">
-              {t(s.eyebrow, lang)}
-            </p>
-            <h2 className="mt-3 text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">
-              {t(s.title, lang)}
-            </h2>
-            <p className="mt-5 font-inter text-base/7 text-gray-500">
-              {t(s.description, lang)}
-            </p>
-            <TipCallout>{t(s.tip, lang)}</TipCallout>
-          </SlideIn>
-
-        </div>
-      </Container>
-    </section>
-  )
-}
-
-// ─── AI Integration Section ───────────────────────────────────────────────────
-
-function AiIntegrationSection() {
-  const { lang } = useLanguage()
-  const s = ui.aiIntegration
-
-  return (
-    <section className="bg-[#1a1a1a] py-24 sm:py-32">
-      <Container>
-
-        {/* Header — centered */}
-        <div className="mx-auto max-w-2xl text-center">
-          <FadeUp>
-            <span className="inline-flex items-center gap-2 rounded-full border border-volt-green/30 bg-volt-green/10 px-4 py-1.5">
-              <span className="h-1.5 w-1.5 rounded-full bg-volt-green" />
-              <span className="font-inter text-xs font-semibold uppercase tracking-widest text-volt-green">
-                {t(s.eyebrow, lang)}
-              </span>
-            </span>
-            <h2 className="mt-6 text-4xl font-normal tracking-tighter text-white sm:text-5xl">
-              {t(s.title, lang)}
-            </h2>
-            <p className="mt-5 font-inter text-base/7 text-white/60">
-              {t(s.description, lang)}
-            </p>
-          </FadeUp>
-        </div>
-
-        {/* Screenshot */}
-        <FadeUp delay={0.15}>
-          <div className="mx-auto mt-12 max-w-2xl overflow-hidden rounded-2xl shadow-2xl ring-1 ring-white/10">
-            <img
-              src="/screenshots/ai-integration.png"
-              alt="Claude conectado a Volt"
-              className="w-full"
-            />
-          </div>
-        </FadeUp>
-
-        {/* Example prompt + CTA */}
-        <FadeUp delay={0.25}>
-          <div className="mx-auto mt-8 max-w-2xl">
-            <p className="font-inter text-sm/6 text-center italic text-white/40">
-              {t(s.example, lang)}
-            </p>
-            <p className="mt-6 text-center font-inter text-sm font-medium text-white/50">
-              {t(s.cta, lang)}
-            </p>
-          </div>
-        </FadeUp>
-
-      </Container>
-    </section>
-  )
-}
-
-// ─── Archive List Section ─────────────────────────────────────────────────────
-
-function ArchiveListSection() {
-  const { lang } = useLanguage()
-  const s = ui.archiveList
-
   return (
     <section className="bg-gray-50 py-24 sm:py-32">
       <Container>
         <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
-
-          {/* Text — left */}
           <SlideIn from="left">
-            <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green">
-              {t(s.eyebrow, lang)}
-            </p>
-            <h2 className="mt-3 text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">
-              {t(s.title, lang)}
-            </h2>
-            <p className="mt-5 font-inter text-base/7 text-gray-500">
-              {t(s.description, lang)}
-            </p>
-            <TipCallout>{t(s.tip, lang)}</TipCallout>
-          </SlideIn>
-
-          {/* Screenshot — right */}
-          <SlideIn from="right" delay={0.1}>
-            <div className="flex justify-center lg:justify-end">
-              <img
-                src="/screenshots/archive-list.png"
-                alt="Archivar lista completa"
-                className="w-64 rounded-2xl shadow-lg ring-1 ring-black/5"
-              />
+            <div className="flex justify-center lg:justify-start">
+              <img src="/screenshots/shortcuts-menu.png" alt="Keyboard Shortcuts" className="w-64 rounded-2xl shadow-lg ring-1 ring-black/5" />
             </div>
           </SlideIn>
-
+          <SlideIn from="right" delay={0.15}>
+            <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green">{t(s.eyebrow, lang)}</p>
+            <h2 className="mt-3 text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">{t(s.title, lang)}</h2>
+            <p className="mt-5 font-inter text-base/7 text-gray-500">{t(s.description, lang)}</p>
+            <TipCallout>{t(s.tip, lang)}</TipCallout>
+          </SlideIn>
         </div>
       </Container>
     </section>
   )
 }
 
-// ─── Broadcast Section ────────────────────────────────────────────────────────
-
-function BroadcastSection() {
-  const { lang } = useLanguage()
-  const s = ui.broadcast
-
-  const shots = [
-    { src: '/screenshots/broadcast-menu.png',    alt: 'Acceder a Broadcast' },
-    { src: '/screenshots/broadcast-type.png',    alt: 'Elegir lista o grupo' },
-    { src: '/screenshots/broadcast-compose.png', alt: 'Redactar y enviar' },
-  ]
-
-  return (
-    <section className="border-t border-gray-100 bg-white py-24 sm:py-32">
-      <Container>
-        <div className="grid grid-cols-1 items-start gap-16 lg:grid-cols-2">
-
-          {/* Screenshots — left, stacked */}
-          <SlideIn from="left">
-            <div className="space-y-4">
-              {shots.map((s, i) => (
-                <motion.img
-                  key={s.src}
-                  src={s.src}
-                  alt={s.alt}
-                  className="w-full rounded-2xl shadow-sm ring-1 ring-black/5"
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1], delay: i * 0.12 }}
-                  viewport={{ once: true, margin: '-8%' }}
-                />
-              ))}
-            </div>
-          </SlideIn>
-
-          {/* Text — right */}
-          <SlideIn from="right" delay={0.1} className="lg:sticky lg:top-28">
-            <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green">
-              {t(s.eyebrow, lang)}
-            </p>
-            <h2 className="mt-3 text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">
-              {t(s.title, lang)}
-            </h2>
-            <p className="mt-5 font-inter text-base/7 text-gray-500">
-              {t(s.description, lang)}
-            </p>
-            <TipCallout>{t(s.tip, lang)}</TipCallout>
-          </SlideIn>
-
-        </div>
-      </Container>
-    </section>
-  )
-}
-
-// ─── Lists Section ────────────────────────────────────────────────────────────
+// ─── Lists Section ─────────────────────────────────────────────────────────────
+// Layout: text LEFT · images RIGHT · bg-white
 
 function ListsSection() {
   const { lang } = useLanguage()
   const s = ui.lists
-
   return (
-    <section className="bg-gray-50 py-24 sm:py-32">
+    <section className="bg-white py-24 sm:py-32">
       <Container>
         <div className="grid grid-cols-1 items-start gap-16 lg:grid-cols-2">
-
-          {/* Text — left */}
           <SlideIn from="left" className="lg:sticky lg:top-28">
-            <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green">
-              {t(s.eyebrow, lang)}
-            </p>
-            <h2 className="mt-3 text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">
-              {t(s.title, lang)}
-            </h2>
-            <p className="mt-5 font-inter text-base/7 text-gray-500">
-              {t(s.description, lang)}
-            </p>
+            <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green">{t(s.eyebrow, lang)}</p>
+            <h2 className="mt-3 text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">{t(s.title, lang)}</h2>
+            <p className="mt-5 font-inter text-base/7 text-gray-500">{t(s.description, lang)}</p>
             <TipCallout>
               <span className="block">{t(s.tip1, lang)}</span>
               <span className="mt-2 block">{t(s.tip2, lang)}</span>
             </TipCallout>
           </SlideIn>
-
-          {/* Screenshots — right, side by side */}
-          <SlideIn from="right" delay={0.1}>
+          <SlideIn from="right" delay={0.15}>
             <div className="flex items-start gap-4">
               <motion.img
                 src="/screenshots/lists-workspaces.png"
-                alt="Workspace y Private lists"
+                alt="Workspace lists"
                 className="w-1/2 rounded-2xl shadow-sm ring-1 ring-black/5"
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-                viewport={{ once: true, margin: '-8%' }}
+                initial={{ opacity: 0, x: 60, scale: 0.95 }}
+                whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                transition={{ duration: 0.8, ease }}
+                viewport={vp}
               />
               <motion.img
                 src="/screenshots/lists-private.png"
-                alt="Listas privadas"
+                alt="Private lists"
                 className="w-1/2 rounded-2xl shadow-sm ring-1 ring-black/5"
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1], delay: 0.12 }}
-                viewport={{ once: true, margin: '-8%' }}
+                initial={{ opacity: 0, x: 60, scale: 0.95 }}
+                whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                transition={{ duration: 0.8, ease, delay: 0.12 }}
+                viewport={vp}
               />
             </div>
           </SlideIn>
-
         </div>
       </Container>
     </section>
   )
 }
 
-// ─── New Chat Section ─────────────────────────────────────────────────────────
+// ─── Broadcast Section ─────────────────────────────────────────────────────────
+// Layout: text LEFT · images RIGHT · bg-gray-50
 
-function NewChatMockup() {
-  return (
-    <img
-      src="/screenshots/new-chat.png"
-      alt="Nuevo chat por número de teléfono"
-      className="w-full rounded-2xl shadow-lg ring-1 ring-black/5"
-    />
-  )
-}
-
-function NewChatSection() {
+function BroadcastSection() {
   const { lang } = useLanguage()
-  const s = ui.newChat
-
+  const s = ui.broadcast
   return (
     <section className="bg-gray-50 py-24 sm:py-32">
       <Container>
-        <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
-
-          {/* Text — left */}
-          <SlideIn from="left">
-            <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green">
-              {t(s.eyebrow, lang)}
-            </p>
-            <h2 className="mt-3 text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">
-              {t(s.title, lang)}
-            </h2>
-            <p className="mt-5 font-inter text-base/7 text-gray-500">
-              {t(s.description, lang)}
-            </p>
+        <div className="grid grid-cols-1 items-start gap-16 lg:grid-cols-2">
+          <SlideIn from="left" className="lg:sticky lg:top-28">
+            <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green">{t(s.eyebrow, lang)}</p>
+            <h2 className="mt-3 text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">{t(s.title, lang)}</h2>
+            <p className="mt-5 font-inter text-base/7 text-gray-500">{t(s.description, lang)}</p>
             <TipCallout>{t(s.tip, lang)}</TipCallout>
           </SlideIn>
 
-          {/* Mockup — right */}
-          <SlideIn from="right" delay={0.1}>
-            <NewChatMockup />
+          {/* Right: type selector on top, compose below */}
+          <SlideIn from="right" delay={0.15}>
+            <div className="space-y-4">
+              {/* Top row: menu + type side by side */}
+              <div className="flex items-start gap-3">
+                <motion.img
+                  src="/screenshots/broadcast-menu.png"
+                  alt="Acceder a Broadcast"
+                  className="w-1/3 rounded-2xl shadow-sm ring-1 ring-black/5"
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, ease }}
+                  viewport={vp}
+                />
+                <motion.img
+                  src="/screenshots/broadcast-type.png"
+                  alt="Elegir tipo de broadcast"
+                  className="w-2/3 rounded-2xl shadow-sm ring-1 ring-black/5"
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, ease, delay: 0.12 }}
+                  viewport={vp}
+                />
+              </div>
+              {/* Compose — full width below */}
+              <motion.img
+                src="/screenshots/broadcast-compose.png"
+                alt="Redactar y enviar"
+                className="w-full rounded-2xl shadow-sm ring-1 ring-black/5"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease, delay: 0.24 }}
+                viewport={vp}
+              />
+            </div>
           </SlideIn>
+        </div>
+      </Container>
+    </section>
+  )
+}
 
+// ─── Mini Features ─────────────────────────────────────────────────────────────
+// 3-card grid: Google Meet, Nuevo chat, Archivar lista · bg-white
+
+const miniFeatures = [
+  {
+    key: 'meet',
+    images: ['/screenshots/meet-command.png', '/screenshots/meet-link.png'],
+    eyebrow: { es: 'Google Meet · Zoom', en: 'Google Meet · Zoom' },
+    title: { es: 'Creá un link de reunión al instante.', en: 'Create a meeting link instantly.' },
+    desc: {
+      es: 'Escribí /meet o /zoom en cualquier chat para generar y compartir un link sin salir de Volt.',
+      en: 'Type /meet or /zoom in any chat to generate and share a link without leaving Volt.',
+    },
+  },
+  {
+    key: 'newchat',
+    images: ['/screenshots/new-chat.png'],
+    eyebrow: { es: 'Nuevo chat', en: 'New chat' },
+    title: { es: 'Escribile a cualquier número.', en: 'Message any number.' },
+    desc: {
+      es: 'Ingresá un número de teléfono directamente para abrir un chat, enviar un mensaje o programarlo.',
+      en: 'Enter a phone number directly to start a chat, send a message, or schedule it.',
+    },
+  },
+  {
+    key: 'archive',
+    images: ['/screenshots/archive-list.png'],
+    eyebrow: { es: 'Archivar lista', en: 'Archive list' },
+    title: { es: 'Desconectate de golpe.', en: 'Disconnect in one click.' },
+    desc: {
+      es: 'Clic derecho sobre una lista → Archive list. Todos los chats quedan archivados de una vez.',
+      en: 'Right-click a list → Archive list. All chats in that list get archived at once.',
+    },
+  },
+]
+
+function MiniFeatures() {
+  const { lang } = useLanguage()
+  return (
+    <section className="bg-white py-24 sm:py-32">
+      <Container>
+        <FadeUp className="mb-12 text-center">
+          <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-gray-400">
+            {lang === 'es' ? 'Más funcionalidades' : 'More features'}
+          </p>
+        </FadeUp>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+          {miniFeatures.map((f, i) => (
+            <motion.div
+              key={f.key}
+              className="overflow-hidden rounded-2xl bg-white ring-1 ring-black/5 shadow-sm"
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.7, ease, delay: i * 0.15 }}
+              viewport={vp}
+            >
+              {/* Image area — fixed height, gray bg, images centered */}
+              <div className="flex h-52 items-center justify-center gap-2 bg-gray-50 px-4">
+                {f.images.map((src) => (
+                  <img
+                    key={src}
+                    src={src}
+                    alt=""
+                    className={`rounded-xl object-contain shadow-sm ring-1 ring-black/5 ${
+                      f.images.length > 1 ? 'max-h-40 w-1/2' : 'max-h-44 max-w-full'
+                    }`}
+                  />
+                ))}
+              </div>
+              {/* Text */}
+              <div className="p-5">
+                <p className="font-inter text-xs font-semibold uppercase tracking-widest text-volt-green">{t(f.eyebrow, lang)}</p>
+                <h3 className="mt-2 text-lg font-normal tracking-tight text-gray-950">{t(f.title, lang)}</h3>
+                <p className="mt-2 font-inter text-sm/6 text-gray-500">{t(f.desc, lang)}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </Container>
     </section>
@@ -791,16 +578,14 @@ export default function Home() {
         <GettingStarted />
         <TasksSection />
         <SendLaterSection />
-        <MeetIntegrationSection />
         <VoiceTranscriptionSection />
         <AppStoreSection />
         <AiIntegrationSection />
         <PrivacyModeSection />
         <ShortcutsSection />
-        <ArchiveListSection />
-        <BroadcastSection />
         <ListsSection />
-        <NewChatSection />
+        <BroadcastSection />
+        <MiniFeatures />
       </main>
       <Footer />
     </div>
