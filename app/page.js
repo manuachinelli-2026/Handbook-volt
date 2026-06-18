@@ -339,6 +339,48 @@ function SendLaterSection() {
   )
 }
 
+// ─── App Store Section ────────────────────────────────────────────────────────
+
+function AppStoreSection() {
+  const { lang } = useLanguage()
+  const s = ui.appStore
+
+  return (
+    <section className="bg-gray-50 py-24 sm:py-32">
+      <Container>
+        <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+
+          {/* Text — left */}
+          <SlideIn from="left">
+            <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green">
+              {t(s.eyebrow, lang)}
+            </p>
+            <h2 className="mt-3 text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">
+              {t(s.title, lang)}
+            </h2>
+            <p className="mt-5 font-inter text-base/7 text-gray-500">
+              {t(s.description, lang)}
+            </p>
+            <TipCallout>{t(s.tip, lang)}</TipCallout>
+          </SlideIn>
+
+          {/* Screenshot — right */}
+          <SlideIn from="right" delay={0.1}>
+            <div className="flex justify-center lg:justify-end">
+              <img
+                src="/screenshots/app-store.png"
+                alt="Volt App Store"
+                className="w-full max-w-md rounded-2xl shadow-lg ring-1 ring-black/5"
+              />
+            </div>
+          </SlideIn>
+
+        </div>
+      </Container>
+    </section>
+  )
+}
+
 // ─── Shortcuts Section ────────────────────────────────────────────────────────
 
 function ShortcutsSection() {
@@ -486,6 +528,7 @@ export default function Home() {
         <GettingStarted />
         <TasksSection />
         <SendLaterSection />
+        <AppStoreSection />
         <ShortcutsSection />
         <NewChatSection />
       </main>

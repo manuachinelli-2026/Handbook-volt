@@ -189,6 +189,18 @@ export const ui = {
       en: 'After writing your message, press ⌘S on Mac or Ctrl+S on Windows to schedule it without touching the mouse.',
     },
   },
+  appStore: {
+    eyebrow: { es: 'App Store', en: 'App Store' },
+    title: { es: 'Conectá Volt con tus herramientas.', en: 'Connect Volt with your tools.' },
+    description: {
+      es: 'Desde el App Store de Volt podés integrar las herramientas que ya usás: Google Meet, Zoom, Claude, ChatGPT, HubSpot, Zendesk, Linear y muchas más. Cada integración amplía lo que podés hacer directamente desde tus chats de WhatsApp.',
+      en: 'From Volt\'s App Store you can connect the tools you already use: Google Meet, Zoom, Claude, ChatGPT, HubSpot, Zendesk, Linear and many more. Each integration expands what you can do directly from your WhatsApp chats.',
+    },
+    tip: {
+      es: 'Para acceder, hacé clic en tu nombre en la esquina inferior izquierda y seleccioná "App Store".',
+      en: 'To access it, click your name in the bottom-left corner and select "App Store".',
+    },
+  },
   shortcuts: {
     eyebrow: { es: 'Atajos de teclado', en: 'Keyboard shortcuts' },
     title: { es: 'Más de 50 shortcuts para ir más rápido.', en: 'More than 50 shortcuts to move faster.' },
