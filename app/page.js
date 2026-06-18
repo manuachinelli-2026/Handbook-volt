@@ -531,6 +531,62 @@ function ShortcutsSection() {
   )
 }
 
+// ─── AI Integration Section ───────────────────────────────────────────────────
+
+function AiIntegrationSection() {
+  const { lang } = useLanguage()
+  const s = ui.aiIntegration
+
+  return (
+    <section className="bg-[#1a1a1a] py-24 sm:py-32">
+      <Container>
+
+        {/* Header — centered */}
+        <div className="mx-auto max-w-2xl text-center">
+          <FadeUp>
+            <span className="inline-flex items-center gap-2 rounded-full border border-volt-green/30 bg-volt-green/10 px-4 py-1.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-volt-green" />
+              <span className="font-inter text-xs font-semibold uppercase tracking-widest text-volt-green">
+                {t(s.eyebrow, lang)}
+              </span>
+            </span>
+            <h2 className="mt-6 text-4xl font-normal tracking-tighter text-white sm:text-5xl">
+              {t(s.title, lang)}
+            </h2>
+            <p className="mt-5 font-inter text-base/7 text-white/60">
+              {t(s.description, lang)}
+            </p>
+          </FadeUp>
+        </div>
+
+        {/* Screenshot */}
+        <FadeUp delay={0.15}>
+          <div className="mx-auto mt-12 max-w-2xl overflow-hidden rounded-2xl shadow-2xl ring-1 ring-white/10">
+            <img
+              src="/screenshots/ai-integration.png"
+              alt="Claude conectado a Volt"
+              className="w-full"
+            />
+          </div>
+        </FadeUp>
+
+        {/* Example prompt + CTA */}
+        <FadeUp delay={0.25}>
+          <div className="mx-auto mt-8 max-w-2xl">
+            <p className="font-inter text-sm/6 text-center italic text-white/40">
+              {t(s.example, lang)}
+            </p>
+            <p className="mt-6 text-center font-inter text-sm font-medium text-white/50">
+              {t(s.cta, lang)}
+            </p>
+          </div>
+        </FadeUp>
+
+      </Container>
+    </section>
+  )
+}
+
 // ─── Lists Section ────────────────────────────────────────────────────────────
 
 function ListsSection() {
@@ -649,6 +705,7 @@ export default function Home() {
         <MeetIntegrationSection />
         <VoiceTranscriptionSection />
         <AppStoreSection />
+        <AiIntegrationSection />
         <PrivacyModeSection />
         <ShortcutsSection />
         <ListsSection />

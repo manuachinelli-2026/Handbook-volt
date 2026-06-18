@@ -253,6 +253,22 @@ export const ui = {
       en: 'You can also open them by pressing the ? key.',
     },
   },
+  aiIntegration: {
+    eyebrow: { es: 'Super tip', en: 'Super tip' },
+    title: { es: 'Conectá tu IA favorita a Volt.', en: 'Connect your favorite AI to Volt.' },
+    description: {
+      es: 'Claude y ChatGPT pueden conectarse directamente a Volt y tener acceso a tus chats. Podés pedirle que detecte oportunidades perdidas, organice tus listas, redacte seguimientos personalizados o lo que tu imaginación te permita.',
+      en: 'Claude and ChatGPT can connect directly to Volt and access your chats. You can ask them to find lost opportunities, organize your lists, draft personalized follow-ups, or anything else you can think of.',
+    },
+    example: {
+      es: '"Necesito cerrar deals. ¿Podés buscar oportunidades en mis chats de Volt, crear una lista \'reactivation\' y hacerles un follow up personalizado a cada uno?"',
+      en: '"I need to close deals. Can you find opportunities in my Volt chats, create a \'reactivation\' list and send each one a personalized follow-up?"',
+    },
+    cta: {
+      es: 'Activalo desde App Store dentro de Volt.',
+      en: 'Activate it from the App Store inside Volt.',
+    },
+  },
   lists: {
     eyebrow: { es: 'Listas', en: 'Lists' },
     title: { es: 'Organizá tus chats a tu manera.', en: 'Organize your chats your way.' },
