@@ -189,6 +189,18 @@ export const ui = {
       en: 'After writing your message, press ⌘S on Mac or Ctrl+S on Windows to schedule it without touching the mouse.',
     },
   },
+  shortcuts: {
+    eyebrow: { es: 'Atajos de teclado', en: 'Keyboard shortcuts' },
+    title: { es: 'Más de 50 shortcuts para ir más rápido.', en: 'More than 50 shortcuts to move faster.' },
+    description: {
+      es: 'Hacé clic sobre tu nombre en la esquina inferior izquierda y seleccioná "Keyboard Shortcuts" para ver todos los atajos disponibles. Están diseñados para que puedas hacer todo en Volt sin tocar el mouse.',
+      en: 'Click your name in the bottom-left corner and select "Keyboard Shortcuts" to see every available shortcut. They\'re designed so you can do everything in Volt without touching the mouse.',
+    },
+    tip: {
+      es: 'También podés abrirlos con la tecla ?.',
+      en: 'You can also open them by pressing the ? key.',
+    },
+  },
   newChat: {
     eyebrow: { es: 'Nuevo chat', en: 'New chat' },
     title: { es: 'Escribile a cualquier número.', en: 'Message any number.' },

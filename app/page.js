@@ -339,6 +339,48 @@ function SendLaterSection() {
   )
 }
 
+// ─── Shortcuts Section ────────────────────────────────────────────────────────
+
+function ShortcutsSection() {
+  const { lang } = useLanguage()
+  const s = ui.shortcuts
+
+  return (
+    <section className="border-t border-gray-100 bg-white py-24 sm:py-32">
+      <Container>
+        <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+
+          {/* Screenshot — left */}
+          <SlideIn from="left">
+            <div className="flex justify-center lg:justify-start">
+              <img
+                src="/screenshots/shortcuts-menu.png"
+                alt="Keyboard Shortcuts menu"
+                className="w-64 rounded-2xl shadow-lg ring-1 ring-black/5"
+              />
+            </div>
+          </SlideIn>
+
+          {/* Text — right */}
+          <SlideIn from="right" delay={0.1}>
+            <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green">
+              {t(s.eyebrow, lang)}
+            </p>
+            <h2 className="mt-3 text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">
+              {t(s.title, lang)}
+            </h2>
+            <p className="mt-5 font-inter text-base/7 text-gray-500">
+              {t(s.description, lang)}
+            </p>
+            <TipCallout>{t(s.tip, lang)}</TipCallout>
+          </SlideIn>
+
+        </div>
+      </Container>
+    </section>
+  )
+}
+
 // ─── New Chat Section ─────────────────────────────────────────────────────────
 
 function NewChatMockup() {
@@ -444,6 +486,7 @@ export default function Home() {
         <GettingStarted />
         <TasksSection />
         <SendLaterSection />
+        <ShortcutsSection />
         <NewChatSection />
       </main>
       <Footer />
