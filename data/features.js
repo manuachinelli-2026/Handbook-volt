@@ -178,14 +178,14 @@ export const ui = {
     },
   },
   sendLater: {
-    eyebrow: { es: 'Mensajes programados', en: 'Scheduled messages' },
-    title: { es: 'Enviá en el momento perfecto.', en: 'Send at the perfect time.' },
+    eyebrow: { es: 'Programa', en: 'Schedule' },
+    title: { es: 'Programá tus mensajes.', en: 'Schedule your messages.' },
     description: {
-      es: 'Escribí un mensaje en cualquier chat y usá el botón "Enviar más tarde" para elegir cuándo se envía. Funciona aunque tu computadora esté apagada.',
-      en: 'Write a message in any chat and use the "Send later" button to choose when it sends. Works even if your computer is off.',
+      es: 'Escribí un mensaje en cualquier chat y usá el botón "Enviar más tarde" para elegir en qué momento querés enviarlo. Volt Cloud permite que se envíe aunque tu computadora esté apagada.',
+      en: 'Write a message in any chat and use the "Send later" button to choose when you want to send it. Volt Cloud allows it to send even if your computer is off.',
     },
     tip: {
-      es: 'Después de escribir el mensaje, presioná ⌘S en Mac o Ctrl+S en Windows para programarlo directamente sin tocar el mouse.',
+      es: 'Después de escribir el mensaje, presioná ⌘S en Mac o Ctrl+S en Windows para programarlo sin tocar el mouse.',
       en: 'After writing your message, press ⌘S on Mac or Ctrl+S on Windows to schedule it without touching the mouse.',
     },
   },
