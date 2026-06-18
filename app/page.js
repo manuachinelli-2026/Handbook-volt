@@ -531,6 +531,64 @@ function ShortcutsSection() {
   )
 }
 
+// ─── Lists Section ────────────────────────────────────────────────────────────
+
+function ListsSection() {
+  const { lang } = useLanguage()
+  const s = ui.lists
+
+  return (
+    <section className="bg-gray-50 py-24 sm:py-32">
+      <Container>
+        <div className="grid grid-cols-1 items-start gap-16 lg:grid-cols-2">
+
+          {/* Text — left */}
+          <SlideIn from="left" className="lg:sticky lg:top-28">
+            <p className="font-inter text-xs/5 font-normal uppercase tracking-widest text-volt-green">
+              {t(s.eyebrow, lang)}
+            </p>
+            <h2 className="mt-3 text-4xl font-normal tracking-tighter text-gray-950 sm:text-5xl">
+              {t(s.title, lang)}
+            </h2>
+            <p className="mt-5 font-inter text-base/7 text-gray-500">
+              {t(s.description, lang)}
+            </p>
+            <TipCallout>
+              <span className="block">{t(s.tip1, lang)}</span>
+              <span className="mt-2 block">{t(s.tip2, lang)}</span>
+            </TipCallout>
+          </SlideIn>
+
+          {/* Screenshots — right, side by side */}
+          <SlideIn from="right" delay={0.1}>
+            <div className="flex items-start gap-4">
+              <motion.img
+                src="/screenshots/lists-workspaces.png"
+                alt="Workspace y Private lists"
+                className="w-1/2 rounded-2xl shadow-sm ring-1 ring-black/5"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+                viewport={{ once: true, margin: '-8%' }}
+              />
+              <motion.img
+                src="/screenshots/lists-private.png"
+                alt="Listas privadas"
+                className="w-1/2 rounded-2xl shadow-sm ring-1 ring-black/5"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1], delay: 0.12 }}
+                viewport={{ once: true, margin: '-8%' }}
+              />
+            </div>
+          </SlideIn>
+
+        </div>
+      </Container>
+    </section>
+  )
+}
+
 // ─── New Chat Section ─────────────────────────────────────────────────────────
 
 function NewChatMockup() {
@@ -593,6 +651,7 @@ export default function Home() {
         <AppStoreSection />
         <PrivacyModeSection />
         <ShortcutsSection />
+        <ListsSection />
         <NewChatSection />
       </main>
       <Footer />

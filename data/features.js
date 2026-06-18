@@ -253,6 +253,22 @@ export const ui = {
       en: 'You can also open them by pressing the ? key.',
     },
   },
+  lists: {
+    eyebrow: { es: 'Listas', en: 'Lists' },
+    title: { es: 'Organizá tus chats a tu manera.', en: 'Organize your chats your way.' },
+    description: {
+      es: 'Arrastrá cualquier conversación a una lista y, cada vez que ese contacto te escriba, aparece ahí directamente. Hay dos tipos: las listas del workspace compartido y las privadas, donde podés crear todas las que necesites para organizar clientes por etapa, por oportunidad o como prefieras.',
+      en: 'Drag any conversation to a list and every time that contact writes to you, it appears there. There are two types: shared workspace lists and private ones, where you can create as many as you need to organize clients by stage, by opportunity, or however you prefer.',
+    },
+    tip1: {
+      es: 'Un chat puede estar en dos listas al mismo tiempo.',
+      en: 'A chat can be in two lists at the same time.',
+    },
+    tip2: {
+      es: 'Para agregar un chat a una lista sin usar el mouse, presioná ⌘P en Mac o Ctrl+P en Windows, elegí la lista y listo.',
+      en: 'To add a chat to a list without touching the mouse, press ⌘P on Mac or Ctrl+P on Windows, choose the list, and done.',
+    },
+  },
   newChat: {
     eyebrow: { es: 'Nuevo chat', en: 'New chat' },
     title: { es: 'Escribile a cualquier número.', en: 'Message any number.' },
